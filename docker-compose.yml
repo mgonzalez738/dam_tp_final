@@ -12,6 +12,8 @@ services:
       -                         ./backend/database/data:/var/lib/mysql
     networks:
       -                         mysql-net
+    ports:
+      -                         "3306:3306" 
 
   phpmyadmin:
     image:                      phpmyadmin/phpmyadmin
