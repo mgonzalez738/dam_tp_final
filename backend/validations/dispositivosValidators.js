@@ -1,8 +1,8 @@
 const { body, param, query } = require('express-validator');
 
-exports.paramIdIsPositiveInt = param("id")
+exports.paramDispIdIsPositiveInt = param("dispId")
     .isInt({gt: 0})
-    .withMessage("El parametro 'id' debe ser un entero positivo mayor a cero");
+    .withMessage("El parametro 'dispositivoId' debe ser un entero positivo mayor a cero");
 
 exports.bodyNombreExists = body("nombre")
     .notEmpty()

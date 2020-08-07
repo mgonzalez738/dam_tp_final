@@ -1,20 +1,51 @@
 const express = require('express');
 const router = express.Router();
 const dispositivosController = require('../controllers/dispositivosController');
-const {paramIdIsPositiveInt, bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsPositiveInt} = require('../validations/dispositivosValidators');
+const {paramDispIdIsPositiveInt, bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsPositiveInt} = require('../validations/dispositivosValidators');
 
-router.get(
-    '/',
+router.get( // Dispositivos (todos)
+    '/',            
     [ ], 
-    dispositivosController.index
+    dispositivosController.indexDispositivos
+);
+
+router.get( // Mediciones Dispositivos (todos)
+    '/mediciones',
+    [ ], 
+    dispositivosController.indexMedicionesDispositivo
 );
 
 router.get(
-    '/:id',
+    '/mediciones/:medId',
     [
-        paramIdIsPositiveInt
+        //paramMedIdIsPositiveInt
     ], 
-    dispositivosController.show
+    dispositivosController.showMedicionesDispositivo
+);
+
+router.get(
+    '/:dispId',
+    [
+        paramDispIdIsPositiveInt
+    ], 
+    dispositivosController.showDispositivo
+);
+
+router.get(
+    '/:dispId/mediciones',
+    [
+        paramDispIdIsPositiveInt
+    ], 
+    dispositivosController.indexMedicionesDispositivo
+);
+
+router.get(
+    '/:dispId/mediciones/:medId',
+    [
+        paramDispIdIsPositiveInt
+        //paramMedIdIsPositiveInt
+    ], 
+    dispositivosController.showMedicionesDispositivo
 );
 
 router.post(
@@ -24,26 +55,26 @@ router.post(
         bodyUbicacionExists,
         bodyElectrovalvulaIdIsPositiveInt
     ], 
-    dispositivosController.store
+    dispositivosController.storeDispositivo
 );
 
 router.delete(
-    '/:id',
+    '/:dispId',
     [
-        paramIdIsPositiveInt
+        paramDispIdIsPositiveInt
     ], 
-    dispositivosController.destroy
+    dispositivosController.destroyDispositivo
 );
 
 router.put(
-    '/:id',
+    '/:dispId',
     [
-        paramIdIsPositiveInt,
+        paramDispIdIsPositiveInt,
         bodyNombreExists,
         bodyUbicacionExists,
         bodyElectrovalvulaIdIsPositiveInt
     ], 
-    dispositivosController.update
+    dispositivosController.updateDispositivo
 );
 
 module.exports = router;
