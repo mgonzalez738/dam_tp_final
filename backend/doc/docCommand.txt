@@ -1,0 +1,1 @@
+.\postmanerator_win --output=./apiDoc.html --collection=./apiDoc.postman_collection.json --ignored-response-headers="X-Powered-By,Access-Control-Allow-Origin,ETag,Content-Length,Date,Connection"

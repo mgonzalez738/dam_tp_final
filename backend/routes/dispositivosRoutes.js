@@ -1,80 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const dispositivosController = require('../controllers/dispositivosController');
-const {paramDispIdIsPositiveInt, bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsPositiveInt} = require('../validations/dispositivosValidators');
+const {paramDispositivoIdIsInt, bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsInt} = require('../validations/dispositivosValidators');
 
-router.get( // Dispositivos (todos)
+router.get( // Devuelve Dispositivos (Todos)
     '/',            
     [ ], 
-    dispositivosController.indexDispositivos
+    dispositivosController.index
 );
 
-router.get( // Mediciones Dispositivos (todos)
-    '/mediciones',
-    [ ], 
-    dispositivosController.indexMedicionesDispositivo
+router.get( // Devuelve Dispositivo (dispositivoId)
+    '/:dispositivoId',
+    [ paramDispositivoIdIsInt ], 
+    dispositivosController.show
 );
 
-router.get(
-    '/mediciones/:medId',
-    [
-        //paramMedIdIsPositiveInt
-    ], 
-    dispositivosController.showMedicionesDispositivo
-);
-
-router.get(
-    '/:dispId',
-    [
-        paramDispIdIsPositiveInt
-    ], 
-    dispositivosController.showDispositivo
-);
-
-router.get(
-    '/:dispId/mediciones',
-    [
-        paramDispIdIsPositiveInt
-    ], 
-    dispositivosController.indexMedicionesDispositivo
-);
-
-router.get(
-    '/:dispId/mediciones/:medId',
-    [
-        paramDispIdIsPositiveInt
-        //paramMedIdIsPositiveInt
-    ], 
-    dispositivosController.showMedicionesDispositivo
-);
-
-router.post(
+router.post( // Agrega Dispositivo
     '/',
-    [
-        bodyNombreExists,
-        bodyUbicacionExists,
-        bodyElectrovalvulaIdIsPositiveInt
-    ], 
-    dispositivosController.storeDispositivo
+    [ bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsInt ], 
+    dispositivosController.store
 );
 
-router.delete(
-    '/:dispId',
-    [
-        paramDispIdIsPositiveInt
-    ], 
-    dispositivosController.destroyDispositivo
+router.delete( // Elimina Dispositivo
+    '/:dispositivoId',
+    [ paramDispositivoIdIsInt ], 
+    dispositivosController.delete
 );
 
-router.put(
-    '/:dispId',
-    [
-        paramDispIdIsPositiveInt,
-        bodyNombreExists,
-        bodyUbicacionExists,
-        bodyElectrovalvulaIdIsPositiveInt
-    ], 
-    dispositivosController.updateDispositivo
+router.put( // Reemplaza Dispositivo
+    '/:dispositivoId',
+    [ paramDispositivoIdIsInt, bodyNombreExists, bodyUbicacionExists, bodyElectrovalvulaIdIsInt ], 
+    dispositivosController.update
 );
 
 module.exports = router;

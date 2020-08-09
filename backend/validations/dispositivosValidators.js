@@ -1,6 +1,6 @@
 const { body, param, query } = require('express-validator');
 
-exports.paramDispIdIsPositiveInt = param("dispId")
+exports.paramDispositivoIdIsInt = param("dispositivoId")
     .isInt({gt: 0})
     .withMessage("El parametro 'dispositivoId' debe ser un entero positivo mayor a cero");
 
@@ -12,7 +12,6 @@ exports.bodyUbicacionExists = body("ubicacion")
     .notEmpty()
     .withMessage("El campo 'ubicacion' debe existir y no estar vacio");
 
-exports.bodyElectrovalvulaIdIsPositiveInt = body("electrovalvulaId")
+exports.bodyElectrovalvulaIdIsInt = body("electrovalvulaId")
     .isInt({gt: 0})
     .withMessage("El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero");
-

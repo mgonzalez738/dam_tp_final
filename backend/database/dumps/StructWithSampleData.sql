@@ -120,3 +120,8 @@ INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp
 INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp(),44,4 );
 INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp(),61,5 );
 INSERT INTO DAM.Mediciones (fecha,valor,dispositivoId) VALUES (current_timestamp(),12,2 );
+
+INSERT INTO DAM.Log_Riegos (fecha,apertura,electrovalvulaId) VALUES (current_timestamp(),1,1 );
+INSERT INTO DAM.Log_Riegos (fecha,apertura,electrovalvulaId) VALUES (current_timestamp(),0,1 );
+INSERT INTO DAM.Log_Riegos (fecha,apertura,electrovalvulaId) VALUES (current_timestamp(),1,1 );
+INSERT INTO DAM.Log_Riegos (fecha,apertura,electrovalvulaId) VALUES (current_timestamp(),0,2 );
