@@ -4,7 +4,7 @@ var pool = require('../database/mysql');
 exports.index = async (req, res, next) => {
 
     var logMessage = "Api: " + req.method + "(" + req.originalUrl + ") | Devolver Dispositivos (Todos)";
-    console.log(logMessage.cyan);
+    console.log(logMessage);
 
     var sqlQuery = 'Select * from Dispositivos';
     pool.query(sqlQuery, function(err, result, fields) {
@@ -44,7 +44,7 @@ exports.show = async (req, res, next) => {
         }
         else {
             console.log("Database: Dispositivos | 1 registro devuelto");
-            res.send(result);
+            res.send(result[0]);
         }
     });
 };

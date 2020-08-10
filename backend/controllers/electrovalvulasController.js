@@ -44,7 +44,7 @@ exports.show = async (req, res, next) => {
         }
         else {
             console.log("Database: Electrovalvulas | 1 registro devuelto");
-            res.send(result);
+            res.send(result[0]);
         }
     });
 };

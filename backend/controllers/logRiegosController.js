@@ -63,7 +63,7 @@ exports.show= async (req, res, next) => {
         } 
         else {
             console.log("Database: Log_Riegos | " + result.length + " registros devueltos");
-            res.send(result);
+            res.send(result[0]);
         }
     });
 };
@@ -82,8 +82,9 @@ exports.store = async (req, res, next) => {
     console.log(logMessage);
 
     var date = new Date(req.body.fecha);
+    var formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     var sqlQuery = `Insert into Log_Riegos (fecha, apertura, electrovalvulaId) 
-                    values ('${date.toLocaleString()}', ${req.body.apertura}, ${req.body.electrovalvulaId})`;
+                    values ('${formated_date}', ${req.body.apertura}, ${req.body.electrovalvulaId})`;
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Log_Riegos | Error guardando registro -> " + err.message);

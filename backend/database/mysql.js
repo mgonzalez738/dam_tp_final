@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var configMysql = {
     connectionLimit: 10,
-    host: 'localhost',//'mysql-server',
+    host: 'mysql-server', //'localhost', 
     port: 3306,
     user: 'root',
     password: 'userpass',

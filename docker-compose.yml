@@ -31,20 +31,20 @@ services:
     ports:
       -                         "8085:80" 
 
-#  nodeapp:
-#    image:                      abassi/nodejs-server:10.0-dev
-#    hostname:                   nodeapp
-#   container_name:             nodeapp
-#    restart:                    always
-#    volumes:
-#      -                         .:/home/node/app
-#    networks:
-#      -                         mysql-net
-#    depends_on: 
-#      -                         mysql-server
-#    ports:
-#      -                         "3000:3000"
-#    command:                    nodemon ./backend/index.js
+  nodeapp:
+    image:                      abassi/nodejs-server:10.0-dev
+    hostname:                   nodeapp
+    container_name:             nodeapp
+    restart:                    always
+    volumes:
+      -                         .:/home/node/app
+    networks:
+      -                         mysql-net
+    depends_on: 
+      -                         mysql-server
+    ports:
+      -                         "3000:3000"
+    command:                    nodemon ./backend/index.js
   
 networks:
   mysql-net:

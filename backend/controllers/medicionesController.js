@@ -63,7 +63,7 @@ exports.show= async (req, res, next) => {
         } 
         else {
             console.log("Database: Mediciones | " + result.length + " registros devueltos");
-            res.send(result);
+            res.send(result[0]);
         }
     });
 };
@@ -82,8 +82,9 @@ exports.store = async (req, res, next) => {
     console.log(logMessage);
 
     var date = new Date(req.body.fecha);
+    var formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     var sqlQuery = `Insert into Mediciones (fecha, valor, dispositivoId) 
-                    values ('${date.toLocaleString()}', ${req.body.valor}, ${req.body.dispositivoId})`;
+                    values ('${formatted_date}', ${req.body.valor}, ${req.body.dispositivoId})`;
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Mediciones | Error guardando registro -> " + err.message);
