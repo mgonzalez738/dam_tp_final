@@ -8,6 +8,8 @@ exports.index = async (req, res, next) => {
         logMessage = logMessage + " (Todos)"
     else
     logMessage = logMessage + " (electrovalvulaId=" + req.query.electrovalvulaId + ")";
+    if((req.query.last != undefined) & (req.query.last == 'true'))
+        logMessage = logMessage + " (Ultima fecha)";
 
     try { validationHandler(req); }
     catch (err) {
@@ -22,6 +24,9 @@ exports.index = async (req, res, next) => {
     if(req.query.electrovalvulaId != undefined)
         sqlQuery = sqlQuery + ` where electrovalvulaId=${req.query.electrovalvulaId}`;
     sqlQuery = sqlQuery + ` order by fecha desc`;
+    if((req.query.last != undefined) & (req.query.last == 'true'))
+        sqlQuery = sqlQuery + ' Limit 1';
+    
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Log_Riegos | Error devolviendo registros -> " + err.message);
@@ -84,7 +89,7 @@ exports.store = async (req, res, next) => {
     var date = new Date(req.body.fecha);
     var formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     var sqlQuery = `Insert into Log_Riegos (fecha, apertura, electrovalvulaId) 
-                    values ('${formated_date}', ${req.body.apertura}, ${req.body.electrovalvulaId})`;
+                    values ('${formatted_date}', ${req.body.apertura}, ${req.body.electrovalvulaId})`;
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Log_Riegos | Error guardando registro -> " + err.message);

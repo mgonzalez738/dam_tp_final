@@ -8,6 +8,8 @@ exports.index = async (req, res, next) => {
         logMessage = logMessage + " (Todas)"
     else
     logMessage = logMessage + " (dispositivoId=" + req.query.dispositivoId + ")";
+    if((req.query.last != undefined) & (req.query.last == 'true'))
+        logMessage = logMessage + " (Ultima fecha)";
 
     try { validationHandler(req); }
     catch (err) {
@@ -22,6 +24,8 @@ exports.index = async (req, res, next) => {
     if(req.query.dispositivoId != undefined)
         sqlQuery = sqlQuery + ` where dispositivoId=${req.query.dispositivoId}`;
     sqlQuery = sqlQuery + ` order by fecha desc`;
+    if((req.query.last != undefined) & (req.query.last == 'true'))
+        sqlQuery = sqlQuery + ' Limit 1';
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Mediciones | Error devolviendo registros -> " + err.message);

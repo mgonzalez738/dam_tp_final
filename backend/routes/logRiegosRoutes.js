@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const logRiegosController = require('../controllers/logRiegosController');
-const {paramLogRiegoIdIsInt , queryElectrovalvulaIdIsInt, bodyFechaIsISO8601, bodyAperturaIsInt, bodyElectrovalvulaIdIsInt} = require('../validations/logRiegosValidators');
+const {paramLogRiegoIdIsInt , queryElectrovalvulaIdIsInt, queryLastIsBoolean, bodyFechaIsISO8601, bodyAperturaIsInt, bodyElectrovalvulaIdIsInt} = require('../validations/logRiegosValidators');
 
 router.get( 
     '/',            
-    [ queryElectrovalvulaIdIsInt ], 
+    [ 
+        queryElectrovalvulaIdIsInt,
+        queryLastIsBoolean
+     ], 
     logRiegosController.index
 );
 

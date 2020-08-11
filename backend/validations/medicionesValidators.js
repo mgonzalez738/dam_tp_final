@@ -7,6 +7,10 @@ exports.paramMedicionIdIsInt = param("medicionId")
 exports.queryDispositivoIdIsInt = query("dispositivoId")
     .optional().isInt({gt: 0})
     .withMessage("El parametro 'dispositivoId' debe ser un entero positivo mayor a cero");
+
+exports.queryLastIsBoolean = query("last")
+    .optional().isBoolean()
+    .withMessage("El parametro 'last' debe ser 'true' o 'false");
     
 exports.bodyFechaIsISO8601 = body("fecha")
     .isISO8601({ strict: true })

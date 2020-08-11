@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const medicionesController = require('../controllers/medicionesController');
-const {paramMedicionIdIsInt, queryDispositivoIdIsInt, bodyFechaIsISO8601, bodyValorIdIsFloat, bodyDispositivoIdIsInt} = require('../validations/medicionesValidators');
+const {paramMedicionIdIsInt, queryDispositivoIdIsInt, queryLastIsBoolean, bodyFechaIsISO8601, bodyValorIdIsFloat, bodyDispositivoIdIsInt} = require('../validations/medicionesValidators');
 
 router.get( 
     '/',            
-    [ queryDispositivoIdIsInt ], 
+    [ 
+        queryDispositivoIdIsInt,
+        queryLastIsBoolean
+     ], 
     medicionesController.index
 );
 

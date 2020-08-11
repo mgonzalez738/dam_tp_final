@@ -18,13 +18,18 @@ app.use(bodyParser.json());
 
 // Rutas
 
-app.get('/api', function (req, res) { // Documentacion
-  res.sendFile('/doc/apiDoc.html',  { root: __dirname });
-});
 app.use("/api/dispositivos", dispositivosRoutes); 
 app.use("/api/mediciones", medicionesRoutes);
 app.use("/api/electrovalvulas", electrovalvulasRoutes); 
 app.use("/api/logRiegos", logRiegosRoutes);
+
+app.get('/api', function (req, res) { // Documentacion
+  res.sendFile('/doc/apiDoc.html',  { root: __dirname });
+});
+
+app.get('/', function (req, res) { // Frontend
+  res.sendFile('/0-es5.js.map',  { root: __dirname + "/../frontend/wwww"});
+});
 
 // Maneja errores
 

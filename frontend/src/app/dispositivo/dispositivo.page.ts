@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { Dispositivo } from '../models/dispositivo.model';
 import { DispositivoService } from '../services/dispositivo.service';
+import { LogRiego } from '../models/logRiego.model';
+import { LogRiegoService } from '../services/logRiego.service';
 
 import * as Highcharts from 'highcharts';
 declare var require: any;
@@ -17,14 +20,18 @@ require('highcharts/modules/solid-gauge')(Highcharts);
 export class DispositivoPage implements OnInit {
 
   public dispositivo:Dispositivo;
+  public estadoValvula:boolean;
+  public dispositivoLoaded:boolean;
 
   private valorObtenido:number=0;
   public myChart;
   private chartOptions;
 
-  public matanga: string;
-
-  constructor(private router:ActivatedRoute, private dispositivoService:DispositivoService) {
+  constructor(
+    private router:ActivatedRoute, 
+    private dispositivoService:DispositivoService,
+    private logRiegoService:LogRiegoService
+    ) {
        
     setTimeout(()=>{
       console.log("Cambio el valor del sensor");
@@ -42,14 +49,29 @@ export class DispositivoPage implements OnInit {
 
   ngOnInit() {
     let idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.dispositivoService.getDispositivo(idDispositivo).then((dsp)=>{
+    this.dispositivoService.getDispositivo(idDispositivo)
+    .then((dsp)=>{
       this.dispositivo = dsp;
-      this.matanga = "careta";
-    });  
+      this.dispositivoLoaded = true;
+      this.generarChart();
+      this.logRiegoService.getLastLogRiegoByElectrovalvulaId(this.dispositivo.electrovalvulaId)
+        .then((log)=>{
+          if(log.apertura == 1)
+            this.estadoValvula = true;
+          else
+            this.estadoValvula = false;
+        })
+        .catch((data)=>{
+          this.estadoValvula = false;
+        })
+    })
+    .catch(()=>{
+      this.dispositivoLoaded = false;
+    }); 
   }
 
   ionViewDidEnter() {
-    this.generarChart();
+    //this.generarChart();
   }
 
   generarChart() {
@@ -121,6 +143,19 @@ export class DispositivoPage implements OnInit {
 
     };
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+  }
+
+  public valveOperate(event) {
+    if(this.estadoValvula) {
+      this.estadoValvula = false
+      console.log(`Electrovalvula dispositivo ${this.dispositivo.dispositivoId} cerrada.`);
+      this.logRiegoService.postNewLog(this.dispositivo.electrovalvulaId, 0);
+    }
+    else {
+      this.estadoValvula = true
+      console.log(`Electrovalvula dispositivo ${this.dispositivo.dispositivoId} abierta.`);
+      this.logRiegoService.postNewLog(this.dispositivo.electrovalvulaId, 1);
+    }
   }
 
 }

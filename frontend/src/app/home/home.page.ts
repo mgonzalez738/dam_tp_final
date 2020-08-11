@@ -11,11 +11,17 @@ import {Dispositivo} from '../models/dispositivo.model';
 export class HomePage implements OnInit {
 
   listadoDispositivo:Dispositivo[];
+  public listadoLoaded: boolean;
 
   constructor(public dispositivoService:DispositivoService) {
-    dispositivoService.getListadoDispositivos().then(lst=>{
+    dispositivoService.getListadoDispositivos()
+    .then(lst=>{
       this.listadoDispositivo=lst;
+      this.listadoLoaded = true;
     })
+    .catch(()=>{
+      this.listadoLoaded = false;
+    });
   }
 
   ngOnInit() {}
