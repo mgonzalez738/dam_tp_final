@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorHandler = require("./middleware/errorHandler");
@@ -15,6 +16,7 @@ app.use(cors());
 
 // Parsea el body de los pedidos como JSONs y completa req.body con las claves
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "../frontend/www")));
 
 // Rutas
 
@@ -28,7 +30,7 @@ app.get('/api', function (req, res) { // Documentacion
 });
 
 app.get('/', function (req, res) { // Frontend
-  res.sendFile('/0-es5.js.map',  { root: __dirname + "/../frontend/wwww"});
+  res.sendFile('/index.html',  { root: __dirname + "/../frontend/wwww"});
 });
 
 // Maneja errores

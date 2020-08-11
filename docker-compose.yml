@@ -13,7 +13,7 @@ services:
     networks:
       -                         mysql-net
     ports:
-      -                         "3306:3306" 
+      -                         "3310:3306" 
 
   phpmyadmin:
     image:                      phpmyadmin/phpmyadmin
