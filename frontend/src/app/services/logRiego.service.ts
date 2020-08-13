@@ -11,6 +11,12 @@ export class LogRiegoService {
   private urlApi="http://localhost:3000";
   
   constructor(private _http: HttpClient) { }
+
+  getListadoLogsRiego():Promise<LogRiego[]>{
+    return this._http.get(this.urlApi + "/api/logRiegos/").toPromise().then((listingLogRiego:LogRiego[])=>{
+      return listingLogRiego;
+    });
+  }
  
   getLastLogRiegoByElectrovalvulaId(id):Promise<LogRiego>{     
     return this._http.get(this.urlApi+`/api/logRiegos?electrovalvulaId=${id}&last=true`).toPromise().then((listingLogRiego:LogRiego[])=>{

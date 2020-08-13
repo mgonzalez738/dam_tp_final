@@ -17,7 +17,7 @@ require('highcharts/modules/solid-gauge')(Highcharts);
   templateUrl: './dispositivo.page.html',
   styleUrls: ['./dispositivo.page.scss'],
 })
-export class DispositivoPage implements OnInit {
+export class DispositivoPage /*implements OnInit*/ {
 
   public dispositivo:Dispositivo;
   public estadoValvula:boolean;
@@ -47,7 +47,7 @@ export class DispositivoPage implements OnInit {
     },6000);
    }
 
-  ngOnInit() {
+   ionViewWillEnter() {
     let idDispositivo = this.router.snapshot.paramMap.get('id');
     this.dispositivoService.getDispositivo(idDispositivo)
     .then((dsp)=>{
@@ -69,10 +69,10 @@ export class DispositivoPage implements OnInit {
       this.dispositivoLoaded = false;
     }); 
   }
-
+/*
   ionViewDidEnter() {
-    //this.generarChart();
-  }
+    this.generarChart();
+  }*/
 
   generarChart() {
     this.chartOptions={
