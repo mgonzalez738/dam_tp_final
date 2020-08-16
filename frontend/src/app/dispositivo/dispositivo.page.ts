@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Dispositivo } from '../models/dispositivo.model';
 import { DispositivoService } from '../services/dispositivo.service';
-import { LogRiego } from '../models/logRiego.model';
 import { LogRiegoService } from '../services/logRiego.service';
 
 import * as Highcharts from 'highcharts';

@@ -7,11 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: DispositivoPage
-  },
-  {
-    path: 'log-riego',
-    loadChildren: () => import('../log-riego/log-riego.module').then( m => m.LogRiegoPageModule)
-  },
+  }
 ];
 
 @NgModule({

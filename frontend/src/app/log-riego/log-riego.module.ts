@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { LogRiegoPageRoutingModule } from './log-riego-routing.module';
 
 import { LogRiegoPage } from './log-riego.page';
+import { ValveStatePipe } from '../pipes/valvestate.pipe';
+import { ValveColorDirective } from '../directives/valve-color.directive';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { LogRiegoPage } from './log-riego.page';
     IonicModule,
     LogRiegoPageRoutingModule
   ],
-  declarations: [LogRiegoPage]
+  declarations: [LogRiegoPage, ValveStatePipe, ValveColorDirective]
 })
 export class LogRiegoPageModule {}

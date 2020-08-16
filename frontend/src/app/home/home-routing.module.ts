@@ -11,6 +11,10 @@ const routes: Routes = [
     path: ':id',
     loadChildren: () => import('../dispositivo/dispositivo.module').then( m => m.DispositivoPageModule)
   },
+  {
+    path: ':id/logRiego',
+    loadChildren: () => import('../log-riego/log-riego.module').then( m => m.LogRiegoPageModule)
+  }
 ];
 
 @NgModule({

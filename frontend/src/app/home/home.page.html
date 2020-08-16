@@ -1,17 +1,22 @@
-<ion-content>
-  <ion-grid class="ion-no-padding">
+<ion-header class="ion-no-border">
+  <ion-grid class ="ion-no-padding">
     <ion-row>
-      <ion-col class="no-padding" size-sm="6" offset-sm="3" size-md="4" offset-md="4" size-lg="3" offset-lg="4.5" size-xl="3" offset-lg="4.5">
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
         <ion-toolbar color = "primary">
           <ion-title>Listado Sensores</ion-title>
         </ion-toolbar>
       </ion-col>
     </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
     <ion-row>
-      <ion-col class="no-padding" size-sm="6" offset-sm="3" size-md="4" offset-md="4" size-lg="3" offset-lg="4.5" size-xl="3" offset-lg="4.5">
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
         <ion-img *ngIf="((listadoLoaded!==undefined) && !listadoLoaded)" src='assets/images/404.png'></ion-img>
         <ion-list>
-          <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="/home/dispositivo/{{dispositivo.dispositivoId}}" >
+          <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="{{dispositivo.dispositivoId}}" >
             <ion-avatar slot="start">
                 <ion-icon size="large" name="thermometer"></ion-icon>
             </ion-avatar>

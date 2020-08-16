@@ -12,14 +12,14 @@ export class LogRiegoService {
   
   constructor(private _http: HttpClient) { }
 
-  getListadoLogsRiego():Promise<LogRiego[]>{
-    return this._http.get(this.urlApi + "/api/logRiegos/").toPromise().then((listingLogRiego:LogRiego[])=>{
+  getListadoLogRiegoByElectrovalvulaId(id):Promise<LogRiego[]>{
+    return this._http.get(this.urlApi + `/api/logRiegos?electrovalvulaId=${id}`).toPromise().then((listingLogRiego:LogRiego[])=>{
       return listingLogRiego;
     });
   }
  
   getLastLogRiegoByElectrovalvulaId(id):Promise<LogRiego>{     
-    return this._http.get(this.urlApi+`/api/logRiegos?electrovalvulaId=${id}&last=true`).toPromise().then((listingLogRiego:LogRiego[])=>{
+    return this._http.get(this.urlApi+`/api/logRiegos?electrovalvulaId=${id}&limit=1`).toPromise().then((listingLogRiego:LogRiego[])=>{
       return listingLogRiego[0];
     });
   };
