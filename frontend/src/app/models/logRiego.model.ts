@@ -28,7 +28,7 @@ export class LogRiego{
     public get fecha(): Date {
         return this._fecha;
     }
-    public set ubicacion(value: Date) {
+    public set fecha(value: Date) {
         this._fecha = value;
     }
     

@@ -8,8 +8,12 @@ exports.index = async (req, res, next) => {
         logMessage = logMessage + " (Todas)"
     else
     logMessage = logMessage + " (dispositivoId=" + req.query.dispositivoId + ")";
-    if((req.query.last != undefined) & (req.query.last == 'true'))
-        logMessage = logMessage + " (Ultima fecha)";
+    if(req.query.limit != undefined)
+    {
+        logMessage = logMessage + ` (Limit = ${req.query.limit})`;
+        if(req.query.offset != undefined)
+        logMessage = logMessage + ` (Offset = ${req.query.offset})`;
+    }
 
     try { validationHandler(req); }
     catch (err) {
@@ -24,8 +28,13 @@ exports.index = async (req, res, next) => {
     if(req.query.dispositivoId != undefined)
         sqlQuery = sqlQuery + ` where dispositivoId=${req.query.dispositivoId}`;
     sqlQuery = sqlQuery + ` order by fecha desc`;
-    if((req.query.last != undefined) & (req.query.last == 'true'))
-        sqlQuery = sqlQuery + ' Limit 1';
+    if(req.query.limit != undefined)
+    {
+        sqlQuery = sqlQuery + ` Limit ${req.query.limit}`;
+        if(req.query.offset != undefined)
+        sqlQuery = sqlQuery + ` Offset ${req.query.offset}`;
+    }
+
     pool.query(sqlQuery, function(err, result, fields) {
         if (err) {
             console.log("Database: Mediciones | Error devolviendo registros -> " + err.message);

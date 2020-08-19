@@ -3,13 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Dispositivo } from '../models/dispositivo.model';
 import { DispositivoService } from '../services/dispositivo.service';
+import { LogRiego } from '../models/logRiego.model';
 import { LogRiegoService } from '../services/logRiego.service';
+import { Medicion } from '../models/medicion.model';
+import { MedicionesService } from '../services/mediciones.service';
 
 import * as Highcharts from 'highcharts';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
 require('highcharts/modules/solid-gauge')(Highcharts);
-
 
 @Component({
   selector: 'app-dispositivo',
@@ -18,60 +20,73 @@ require('highcharts/modules/solid-gauge')(Highcharts);
 })
 export class DispositivoPage /*implements OnInit*/ {
 
-  public dispositivo:Dispositivo;
-  public estadoValvula:boolean;
-  public dispositivoLoaded:boolean;
+  public dispositivo: Dispositivo;
+  public logRiego: LogRiego;
+  public medicion: Medicion;
+  public estadoValvula: boolean;
+  public dispositivoLoaded: boolean;
 
-  private valorObtenido:number=0;
   public myChart;
   private chartOptions;
+  private intervalObj;
+  private valorMedicion: number;
 
   constructor(
     private router:ActivatedRoute, 
     private dispositivoService:DispositivoService,
-    private logRiegoService:LogRiegoService
-    ) {
-       
-    setTimeout(()=>{
-      console.log("Cambio el valor del sensor");
-      this.valorObtenido=60;
-      //llamo al update del chart para refrescar y mostrar el nuevo valor
-      this.myChart.update({series: [{
-          name: 'kPA',
-          data: [this.valorObtenido],
-          tooltip: {
-              valueSuffix: ' kPA'
-          }
-      }]});
-    },6000);
-   }
+    private logRiegoService:LogRiegoService,
+    private medicionService:MedicionesService
+    ) { }
 
-   ionViewWillEnter() {
+   async ionViewWillEnter() {
     let idDispositivo = this.router.snapshot.paramMap.get('id');
-    this.dispositivoService.getDispositivo(idDispositivo)
-    .then((dsp)=>{
-      this.dispositivo = dsp;
-      this.dispositivoLoaded = true;
-      this.generarChart();
-      this.logRiegoService.getLastLogRiegoByElectrovalvulaId(this.dispositivo.electrovalvulaId)
-        .then((log)=>{
-          if(log.apertura == 1)
-            this.estadoValvula = true;
-          else
-            this.estadoValvula = false;
-        })
-        .catch((data)=>{
+
+    try {
+      this.dispositivo = <Dispositivo>await this.dispositivoService.getDispositivo(idDispositivo)
+      try {
+        this.logRiego = <LogRiego> await this.logRiegoService.getLastLogRiegoByElectrovalvulaId(this.dispositivo.electrovalvulaId)
+        if(this.logRiego.apertura == 1) {
+          this.estadoValvula = true;
+        }
+        else {
           this.estadoValvula = false;
-        })
-    })
-    .catch(()=>{
+        }
+      }
+      catch {
+        this.estadoValvula = false;
+      }
+      try {
+        this.medicion = <Medicion> await this.medicionService.getLastMedicionByDispositivoId(this.dispositivo.dispositivoId)
+        this.valorMedicion = <number> this.medicion.valor;
+        console.log("Ultima medición leida de BD: " + this.medicion.valor);
+      }
+      catch {
+        this.valorMedicion=0;
+      }
+      this.generarChart()
+      this.setChartValue();
+      this.dispositivoLoaded = true;
+    }
+    catch (error)
+    {
       this.dispositivoLoaded = false;
-    }); 
+      console.log(error);
+      return;
+    }
   }
-/*
+
   ionViewDidEnter() {
-    this.generarChart();
-  }*/
+    setTimeout(()=>{ // Muestro el valor de BD durante 5 segundos
+      this.intervalObj = setInterval(() => { // Varia el valor del gauge cada 1 segundo segun el estado de la valvula
+        this.setChartValue();
+      }, 1000);
+    },6000);
+    
+  }
+
+  ionViewWillLeave() {
+    clearInterval(this.intervalObj);
+  }
 
   generarChart() {
     this.chartOptions={
@@ -118,23 +133,26 @@ export class DispositivoPage /*implements OnInit*/ {
         },
         plotBands: [{
             from: 0,
-            to: 10,
-            color: '#55BF3B' // green
+            to: 5,
+            color: '#00000' // red 
         }, {
             from: 10,
-            to: 30,
-            color: '#DDDF0D' // yellow
+            to: 15,
+            color: '#DF5353' // red 
         }, {
             from: 30,
-            to: 100,
-            color: '#DF5353' // red
+            to: 40,
+            color: '#55BF3B' // green 
+        }, {
+            from: 50,
+            to: 60,
+            color: '#DDDF0D' // yellow
         }]
-    }
-    ,
+    },
   
     series: [{
         name: 'kPA',
-        data: [this.valorObtenido],
+        data: [0],
         tooltip: {
             valueSuffix: ' kPA'
         }
@@ -144,16 +162,36 @@ export class DispositivoPage /*implements OnInit*/ {
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
   }
 
+  setChartValue() {
+     
+    if(this.estadoValvula) {
+      this.valorMedicion = this.valorMedicion - 1
+      if(this.valorMedicion < 0)
+      this.valorMedicion = 0;
+    }
+    else {
+      this.valorMedicion = +this.valorMedicion + 2;
+      if(this.valorMedicion > 100)
+        this.valorMedicion = 100;
+    }
+    var point = this.myChart.series[0].points[0];       
+    point.update(this.valorMedicion);
+  };
+
   public valveOperate(event) {
     if(this.estadoValvula) {
       this.estadoValvula = false
       console.log(`Electrovalvula dispositivo ${this.dispositivo.dispositivoId} cerrada.`);
       this.logRiegoService.postNewLog(this.dispositivo.electrovalvulaId, 0);
+      console.log(`Nuevo log guardado`);
+      this.medicionService.postNuevaMedicion(this.dispositivo.dispositivoId, this.valorMedicion);
+      console.log("Nueva medición guardada en BD: " + this.valorMedicion);
     }
     else {
       this.estadoValvula = true
       console.log(`Electrovalvula dispositivo ${this.dispositivo.dispositivoId} abierta.`);
       this.logRiegoService.postNewLog(this.dispositivo.electrovalvulaId, 1);
+      console.log(`Nuevo log guardado`);
     }
   }
 
