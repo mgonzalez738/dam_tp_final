@@ -6,15 +6,15 @@ Autor: Martín González - 2020
 
 El objeto de este proyecto es finalizar la asignatura Desarrollo de Aplicaciones Multiplataforma de la CEIoT.
 
-La aplicación consiste en una SPA (Single Page Aplicaction) que simula la autmatización de un sistema de riego.
+La aplicación consiste en una SPA (Single Page Aplicaction) que simula la automatización de un sistema de riego.
 
-En la pagina principal de la aplicación se muestra el listado de sensores de humedad cargados en la base de datos. 
+En la página principal de la aplicación se muestra el listado de sensores de humedad cargados en la base de datos. 
 
-A partir del listado se accede a la pagina de control y visuaización correspondiente a sensor. Al ingresar el medidor muestra durante 5 segundos el último valor almacenado del sensor. Luego, la aplicación simula un cambio de la medición del sensor aumentando o disminuyendo el valor segun el estado cerrado o abierto de la electrovalvula asociada.
+A partir del listado se accede a la pagina de control y visuaización correspondiente a cada sensor. Al ingresar, el medidor muestra durante 5 segundos el último valor almacenado del sensor. Luego, la aplicación simula un cambio de la medición del sensor aumentando o disminuyendo el valor según el estado cerrado o abierto de la electroválvula asociada.
 
-Desde esta página es posible comandar la apertura y cierre de la electrovalvula. El cambio de estado de la electrovalvula es registrado en la tabla de logs de la base de datos. En cada cierre de la valvula el valor del indicador es almacenado en la tabla de mediciones de la base de datos.
+Desde esta página es posible comandar la apertura y cierre de la electroválvula. El cambio de estado de la es registrado en la tabla de logs de la base de datos. En cada cierre de la electroválvula el valor del indicador es almacenado en la tabla de mediciones de la base de datos.
 
-Ambos registros, logs y mediciones, pueden observarse desde la misma página.
+Ambos registros, logs y mediciones, pueden accesderse para su visualización desde la misma página.
 
 <p float="left">
   <img src="/frontend/doc/img1.png" width="200" />
