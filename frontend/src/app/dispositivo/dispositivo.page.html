@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-grid class ="ion-no-padding">
+    <ion-row>
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <ion-toolbar color = "primary">
+          <ion-buttons slot="start">
+            <ion-back-button defaultHref="/home"></ion-back-button>
+          </ion-buttons>
+          <ion-title *ngIf="((dispositivoLoaded!==undefined) && dispositivoLoaded)" >Sensor {{dispositivo.dispositivoId}} - {{dispositivo.nombre}}</ion-title>
+          <ion-title *ngIf="((dispositivoLoaded!==undefined) && !dispositivoLoaded)" >Sensor</ion-title>
+        </ion-toolbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <ion-img *ngIf="((dispositivoLoaded!==undefined) && !dispositivoLoaded)" src='assets/images/404.png'></ion-img>
+      </ion-col>
+    </ion-row>  
+    <ion-row >
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <div id="highcharts" style="width:100%; height:300px;"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="((dispositivoLoaded!==undefined) && dispositivoLoaded)">
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <ion-button expand="block" (click)="valveOperate($event)">
+          <div *ngIf="((estadoValvula!==undefined) && !estadoValvula)"><ion-icon name="flash-outline" slot="start"></ion-icon> ABRIR ELECTROVALVULA</div>
+          <div *ngIf="((estadoValvula!==undefined) && estadoValvula)"><ion-icon name="flash-off-outline" slot="start"></ion-icon> CERRAR ELECTROVALVULA</div>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="((dispositivoLoaded!==undefined) && dispositivoLoaded)">
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <ion-button fill="outline" expand="block" routerLink="mediciones" routerDirection="forward">VER TODAS LAS MEDICIONES</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="((dispositivoLoaded!==undefined) && dispositivoLoaded)">
+      <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
+        <ion-button fill="outline" expand="block" routerLink="logsRiego" routerDirection="forward">VER LOG RIEGOS</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+
+

@@ -1,0 +1,3716 @@
+{
+	"info": {
+		"_postman_id": "744354c3-ff76-4f57-b350-487de9ad4818",
+		"name": "Api Riego Automatizado",
+		"description": "# Description\nAPI para la gestion de las tablas de datos de la aplicacion de riego automatico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dispositivos",
+			"item": [
+				{
+					"name": "Index Dispositivos (Todos)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/dispositivos/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"dispositivos",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "514"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"202-8FLPuJlznmepyg2FfNTmwI1iyxY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 17:57:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"dispositivoId\": 1,\n        \"nombre\": \"Sensor 1\",\n        \"ubicacion\": \"Patio\",\n        \"electrovalvulaId\": 1\n    },\n    {\n        \"dispositivoId\": 2,\n        \"nombre\": \"Sensor 2\",\n        \"ubicacion\": \"Cocina\",\n        \"electrovalvulaId\": 2\n    },\n    {\n        \"dispositivoId\": 3,\n        \"nombre\": \"Sensor 3\",\n        \"ubicacion\": \"Jardin Delantero\",\n        \"electrovalvulaId\": 3\n    },\n    {\n        \"dispositivoId\": 4,\n        \"nombre\": \"Sensor 4\",\n        \"ubicacion\": \"Living\",\n        \"electrovalvulaId\": 4\n    },\n    {\n        \"dispositivoId\": 5,\n        \"nombre\": \"Sensor 5\",\n        \"ubicacion\": \"Habitacion 1\",\n        \"electrovalvulaId\": 5\n    },\n    {\n        \"dispositivoId\": 6,\n        \"nombre\": \"Sensor 6\",\n        \"ubicacion\": \"Habitacion 2\",\n        \"electrovalvulaId\": 6\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Index Dispositivo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/dispositivos/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"dispositivos",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-+6h0GcbIQWcxZ7L6MvZkFw6ePXo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:40:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion sin datos devueltos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:23:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"52-mRcjpg4ejIG3MBb9dAhndKfRdQY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:22:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"dispositivoId\": 1,\n        \"nombre\": \"Sensor 1\",\n        \"ubicacion\": \"Patio\",\n        \"electrovalvulaId\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Guarda Dispositivo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"\",\r\n    \"ubicacion\": \"\",\r\n    \"electrovalvulaId\": 3.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/dispositivos/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"dispositivos",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"\",\r\n    \"ubicacion\": \"\",\r\n    \"electrovalvulaId\": 3.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "397"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18d-G6aIjK7aD7Q9ch7O0KmEwxJFXMA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:43:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'nombre' debe existir y no estar vacio\",\n            \"param\": \"nombre\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'ubicacion' debe existir y no estar vacio\",\n            \"param\": \"ubicacion\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": 3.5,\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Sensor 10\",\r\n    \"ubicacion\": \"Patio\",\r\n    \"electrovalvulaId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-SLNHlI025zwL4qM49H/6aYw0E8E\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:42:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Dispositivo guardado\",\n    \"dispositivoId\": 8\n}"
+						}
+					]
+				},
+				{
+					"name": "Elimina Dispositivo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/dispositivos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"dispositivos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "179"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b3-+6h0GcbIQWcxZ7L6MvZkFw6ePXo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:46:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Dispositivo no encontrado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/12",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"12"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-hPifBa6iEpN7doKaRvHTnoPqipQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:46:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro eliminado\"\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/8",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-/4ABzo0Z1HUw5kKk2gNRhFi7W0U\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:45:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Dispositivo eliminado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reemplaza Dispositivo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Sensor A\",\r\n        \"ubicacion\": \"Balcon\",\r\n        \"electrovalvulaId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/dispositivos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"dispositivos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Dispositivo no encontrado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombre\": \"Sensor A\",\r\n        \"ubicacion\": \"Balcon\",\r\n        \"electrovalvulaId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-SOZRfQbVgbl61Rm+eyV2xrtUKLM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:52:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro reemplazado\"\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombre\": \"Sensor A\",\r\n        \"ubicacion\": \"Balcon\",\r\n        \"electrovalvulaId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "37"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25-nIRRENKuv3bEqi0wi5SdtNcD0Uo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:49:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Dispositivo reemplazado\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombre\": \"\",\r\n        \"ubicacion\": \"\",\r\n        \"electrovalvulaId\": 2.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/dispositivos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"dispositivos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "533"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"215-wnMwNSgoRJvvEciaxJNvo1SKf+w\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 22:52:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"params\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'nombre' debe existir y no estar vacio\",\n            \"param\": \"nombre\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'ubicacion' debe existir y no estar vacio\",\n            \"param\": \"ubicacion\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": 2.5,\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Mediciones",
+			"item": [
+				{
+					"name": "Index Mediciones (Todas)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/mediciones",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones"
+							]
+						},
+						"description": "Obtiene todas las mediciones de la base de datos"
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "916"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"394-YgShKFFb4bgEc47a4x0m6VYhieM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 14:02:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"medicionId\": 1,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"60\",\n        \"dispositivoId\": 1\n    },\n    {\n        \"medicionId\": 2,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"40\",\n        \"dispositivoId\": 1\n    },\n    {\n        \"medicionId\": 3,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"30\",\n        \"dispositivoId\": 2\n    },\n    {\n        \"medicionId\": 4,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"50\",\n        \"dispositivoId\": 3\n    },\n    {\n        \"medicionId\": 5,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"33\",\n        \"dispositivoId\": 5\n    },\n    {\n        \"medicionId\": 6,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"17\",\n        \"dispositivoId\": 4\n    },\n    {\n        \"medicionId\": 7,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"29\",\n        \"dispositivoId\": 6\n    },\n    {\n        \"medicionId\": 8,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"20\",\n        \"dispositivoId\": 1\n    },\n    {\n        \"medicionId\": 9,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"44\",\n        \"dispositivoId\": 4\n    },\n    {\n        \"medicionId\": 10,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"61\",\n        \"dispositivoId\": 5\n    },\n    {\n        \"medicionId\": 11,\n        \"fecha\": \"2020-08-08T17:01:45.000Z\",\n        \"valor\": \"12\",\n        \"dispositivoId\": 2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Index Mediciones (Filtro)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/mediciones?dispositivoId=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones"
+							],
+							"query": [
+								{
+									"key": "dispositivoId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Obtiene todas las mediciones correspondientes a un dispositivo de la base de datos"
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones?dispositivoId=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									],
+									"query": [
+										{
+											"key": "dispositivoId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "334"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"14e-FuujOGZ9Ip9bqnUmGYDXDtavMOs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 14:19:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"medicionId\": 1,\n        \"fecha\": \"2020-08-08T17:18:12.000Z\",\n        \"valor\": \"60\",\n        \"dispositivoId\": 1\n    },\n    {\n        \"medicionId\": 2,\n        \"fecha\": \"2020-08-08T17:18:12.000Z\",\n        \"valor\": \"40\",\n        \"dispositivoId\": 1\n    },\n    {\n        \"medicionId\": 8,\n        \"fecha\": \"2020-08-08T17:18:12.000Z\",\n        \"valor\": \"20\",\n        \"dispositivoId\": 1\n    }\n]"
+						},
+						{
+							"name": "Ejecucion sin datos devueltos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones?dispositivoId=10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									],
+									"query": [
+										{
+											"key": "dispositivoId",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:11:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones?dispositivoId=A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									],
+									"query": [
+										{
+											"key": "dispositivoId",
+											"value": "A"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "178"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b2-gQd7h5hYQoQHRv7iA78MkgU6DnE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:11:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"query\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Index Medicion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/mediciones",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones"
+							]
+						},
+						"description": "Obtiene una medicion de la base de datos"
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-iSsRC0cO0hKMsEJXUND4flbMugE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 17:50:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"medicionId\": 1,\n        \"fecha\": \"2020-08-08T20:46:51.000Z\",\n        \"valor\": \"60\",\n        \"dispositivoId\": 1\n    }\n]"
+						},
+						{
+							"name": "Ejecucion sin datos devueltos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 17:54:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-/uxy3ckMN7BBWf+bpgeXNQwaB9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 17:55:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'medicionId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"medicionId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Guarda Medicion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2020-08-20T12:00:00.000Z\",\r\n    \"valor\": \"20\",\r\n    \"dispositivoId\": 1\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/mediciones",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones"
+							]
+						},
+						"description": "Agrega una medicion a la base de datos"
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fecha\": \"2020-08-20T12:00:00.000Z\",\r\n    \"valor\": \"20\",\r\n    \"dispositivoId\": 1\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mediciones",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-cDvyrqNChyFYlNnYeejtNucM8F8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 14:18:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Medicion guardada\",\n    \"medicionId\": 12\n}"
+						},
+						{
+							"name": "Errores de validacion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fecha\": \"A\",\r\n    \"valor\": \"B\",\r\n    \"dispositivoId\": -1\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mediciones",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "388"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"184-sLbyRVG8ZPU3Qzfb+mh1utwWl9c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:13:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'fecha' debe ser formato ISO 8601\",\n            \"param\": \"fecha\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"B\",\n            \"msg\": \"El parametro 'valor' debe ser un valor entre 0 y 100\",\n            \"param\": \"valor\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": -1,\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Elimina Medicion",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/mediciones/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones",
+								"1"
+							]
+						},
+						"description": "Elimina una medicion de la base de datos"
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20-H3KyqOm7VazkzAShYukCS3A3uxg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 14:52:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Medicion eliminada\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-/uxy3ckMN7BBWf+bpgeXNQwaB9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:15:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'medicionId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"medicionId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Medicion no encontrada",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/mediciones/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-hPifBa6iEpN7doKaRvHTnoPqipQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:15:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro eliminado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reemplaza Medicion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2020-08-25T12:00:00.000Z\",\r\n    \"valor\": \"90\",\r\n    \"dispositivoId\": 3\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/mediciones/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"mediciones",
+								"2"
+							]
+						},
+						"description": "Reemplaza los datos de una medicion en la base de datos"
+					},
+					"response": [
+						{
+							"name": "Errores de validacion",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fecha\": \"B\",\r\n    \"valor\": \"C\",\r\n    \"dispositivoId\": -1\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mediciones/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "518"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"206-nZKd8Mc/KqRqtHH9oPp3ESyiOYg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:18:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'medicionId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"medicionId\",\n            \"location\": \"params\"\n        },\n        {\n            \"value\": \"B\",\n            \"msg\": \"El parametro 'fecha' debe ser formato ISO 8601\",\n            \"param\": \"fecha\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": \"C\",\n            \"msg\": \"El parametro 'valor' debe ser un valor entre 0 y 100\",\n            \"param\": \"valor\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": -1,\n            \"msg\": \"El parametro 'dispositivoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"dispositivoId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fecha\": \"2020-08-25T12:00:00.000Z\",\r\n    \"valor\": \"90\",\r\n    \"dispositivoId\": 3\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mediciones/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22-/tbAzpTxM6ushL0YTcfQErJ8T2c\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 14:59:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Medicion reemplazada\"\n}"
+						},
+						{
+							"name": "Medicion no encontrada",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fecha\": \"2020-08-25T12:00:00.000Z\",\r\n    \"valor\": \"90\",\r\n    \"dispositivoId\": 3\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/mediciones/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"mediciones",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-s9WhbC5Z7aEWyijP39vhu/kQMXc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 15:17:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro reemplazando\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Electrovalvulas",
+			"item": [
+				{
+					"name": "Index Electrovalvulas (Todas)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/electrovalvulas",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"electrovalvulas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "277"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"115-fpjx0clkrcPyi9WI8Fpmgi31+XU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 23:44:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"electrovalvulaId\": 1,\n        \"nombre\": \"eLPatio\"\n    },\n    {\n        \"electrovalvulaId\": 2,\n        \"nombre\": \"eLCocina\"\n    },\n    {\n        \"electrovalvulaId\": 3,\n        \"nombre\": \"eLJardinDelantero\"\n    },\n    {\n        \"electrovalvulaId\": 4,\n        \"nombre\": \"eLLiving\"\n    },\n    {\n        \"electrovalvulaId\": 5,\n        \"nombre\": \"eLHabitacion1\"\n    },\n    {\n        \"electrovalvulaId\": 6,\n        \"nombre\": \"eLHabitacion2\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Index Electrovalvula",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/electrovalvulas",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"electrovalvulas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-6TpYdPd4vQGDJJ0ebsn5BBnDx44\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 23:46:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"electrovalvulaId\": 1,\n        \"nombre\": \"eLPatio\"\n    }\n]"
+						},
+						{
+							"name": "Ejecucion sin datos devueltos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 23:47:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-+oZOhpzdSBfwDHXjUZz63XA6AfE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Aug 2020 23:47:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Guarda Electrovalvula",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"eLBalcon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/electrovalvulas",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"electrovalvulas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombre\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-kVAY+EHkJwzTHvt3Qqgq2XpuqSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 00:30:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'nombre' debe existir y no estar vacio\",\n            \"param\": \"nombre\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"nombre\": \"eLBalcon\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a-5jOUaJWW19r0avU29p/1qKYJ2Mc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 00:28:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Electrovalvula guardada\",\n    \"electrovalvulaId\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "Elimina Electrovalvula",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/electrovalvulas/7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"electrovalvulas",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Electrovalvula no encontrada",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-hPifBa6iEpN7doKaRvHTnoPqipQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 00:33:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro eliminado\"\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/7",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-BtuzqIePqZsesBeShdjRMuwhSUM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 00:32:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Electrovalvula eliminada\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "185"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b9-+oZOhpzdSBfwDHXjUZz63XA6AfE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 00:33:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Reemplaza Electrovalvula",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"eLBalcon\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/electrovalvulas/20",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"electrovalvulas",
+								"20"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion Correcta",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"eLBalcon\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-+Y6iPPxpGYZ6cC1qXo26SPYa8pg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 03:21:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Electrovalvula reemplazada\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "289"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"121-N1awOaKWDZ/TWocBIqoEikekr+I\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 03:38:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"params\"\n        },\n        {\n            \"value\": \"\",\n            \"msg\": \"El campo 'nombre' debe existir y no estar vacio\",\n            \"param\": \"nombre\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Electrovalvula no encontrada",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"eLBalcon\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/electrovalvulas/20",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"electrovalvulas",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-SOZRfQbVgbl61Rm+eyV2xrtUKLM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 03:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro reemplazado\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Log_Riegos",
+			"item": [
+				{
+					"name": "Index Log_Riegos (Todos)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/logRiegos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "345"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"159-XvwlyGJgeDuhH659N6QCngK8JC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:05:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"logRiegoId\": 1,\n        \"apertura\": 1,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 1\n    },\n    {\n        \"logRiegoId\": 2,\n        \"apertura\": 0,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 1\n    },\n    {\n        \"logRiegoId\": 3,\n        \"apertura\": 1,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 1\n    },\n    {\n        \"logRiegoId\": 4,\n        \"apertura\": 0,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 2\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Index Log_Riegos (Filtro)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/logRiegos?electrovalvulaId=A",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos"
+							],
+							"query": [
+								{
+									"key": "electrovalvulaId",
+									"value": "A"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos?electrovalvulaId=2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									],
+									"query": [
+										{
+											"key": "electrovalvulaId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-HmP9KIl1g+gZvh8benHwrpmRCnE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:07:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"logRiegoId\": 4,\n        \"apertura\": 0,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 2\n    }\n]"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos?electrovalvulaId=A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									],
+									"query": [
+										{
+											"key": "electrovalvulaId",
+											"value": "A"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "184"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b8-awaXtQk2XyIW/UORLZqG3gH+PNg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:09:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"query\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ningun valor devuelto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos?electrovalvulaId=10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									],
+									"query": [
+										{
+											"key": "electrovalvulaId",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:07:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Index Log_Riego",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/logRiegos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-v9HQZZNFtP58dsd8i8mnvOZniZ0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:16:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"logRiegoId\": 1,\n        \"apertura\": 1,\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\n        \"electrovalvulaId\": 1\n    }\n]"
+						},
+						{
+							"name": "Ningun valor devuelto",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26-l9p5Q0rCMe3tzmwllPKls1cVsI8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:17:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro devuelto\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-3M+fCusoAgj0tFXnEoRqgmYKW08\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:17:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'logRiegoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"logRiegoId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Guarda Log_Riego",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"apertura\": 1,\r\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\r\n        \"electrovalvulaId\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/logRiegos",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"apertura\": 3,\r\n        \"fecha\": \"2020-08-08T17:46:51.000Zooooo\",\r\n        \"electrovalvulaId\": -1\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/logRiegos",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "409"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"199-dbAQJi4fLW3RpZ2adgtQrZg5YCQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:27:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"2020-08-08T17:46:51.000Zooooo\",\n            \"msg\": \"El parametro 'fecha' debe ser formato ISO 8601\",\n            \"param\": \"fecha\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": 3,\n            \"msg\": \"El parametro 'apertura' debe ser 0 o 1\",\n            \"param\": \"apertura\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": -1,\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\r\n        \"apertura\": 1,\r\n        \"fecha\": \"2020-08-08T17:46:51.000Z\",\r\n        \"electrovalvulaId\": 1\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/logRiegos",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-Oq9HsljuVwXny6ztUA15as+hVaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:25:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Log Riego guardado\",\n    \"logRiegoId\": 5\n}"
+						}
+					]
+				},
+				{
+					"name": "Elimina Log_Riego",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/api/logRiegos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Log_Riego no encontrado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-hPifBa6iEpN7doKaRvHTnoPqipQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:28:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro eliminado\"\n}"
+						},
+						{
+							"name": "Error de validacion",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ad-3M+fCusoAgj0tFXnEoRqgmYKW08\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:29:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'logRiegoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"logRiegoId\",\n            \"location\": \"params\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "33"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21-eLr8AMdBl1Wq7gzwhev6miE3TUU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:28:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Log Riego eliminado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Reemplaza Log_Riego",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"apertura\": 1,\r\n        \"fecha\": \"2020-09-08T20:46:51.000Z\",\r\n        \"electrovalvulaId\": 2\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/logRiegos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logRiegos",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Ejecucion correcta",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"apertura\": 1,\r\n        \"fecha\": \"2020-09-08T20:46:51.000Z\",\r\n        \"electrovalvulaId\": 2\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "35"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-4MMatE6CqX1PLlHQRLwMKayvIPs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:32:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Log Riego reemplazado\"\n}"
+						},
+						{
+							"name": "Error en validacion",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"apertura\": 12,\r\n        \"fecha\": \"2020-09-08T20:46:51.000Zaaaa\",\r\n        \"electrovalvulaId\": -2\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/A",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"A"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "539"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"21b-A3FJhYAZukmKNlW7tboowcREiUM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:33:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        {\n            \"value\": \"A\",\n            \"msg\": \"El parametro 'logRiegoId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"logRiegoId\",\n            \"location\": \"params\"\n        },\n        {\n            \"value\": \"2020-09-08T20:46:51.000Zaaaa\",\n            \"msg\": \"El parametro 'fecha' debe ser formato ISO 8601\",\n            \"param\": \"fecha\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": 12,\n            \"msg\": \"El parametro 'apertura' debe ser 0 o 1\",\n            \"param\": \"apertura\",\n            \"location\": \"body\"\n        },\n        {\n            \"value\": -2,\n            \"msg\": \"El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero\",\n            \"param\": \"electrovalvulaId\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Log_Riego no encontrado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n        \"apertura\": 1,\r\n        \"fecha\": \"2020-09-08T20:46:51.000Z\",\r\n        \"electrovalvulaId\": 2\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/api/logRiegos/10",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"logRiegos",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-SOZRfQbVgbl61Rm+eyV2xrtUKLM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 09 Aug 2020 04:33:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Ningun registro reemplazado\"\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "761e1c4a-bf80-4c38-aef7-0a6d1fd5c977",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "659e919c-a437-4760-bf14-135ec018756c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

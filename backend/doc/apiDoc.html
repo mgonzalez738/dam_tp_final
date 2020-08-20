@@ -1,0 +1,3167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Api Riego Automatizado</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>
+        hljs.configure({
+            tabReplace: '    ',
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <style>body {
+    position: relative;
+}
+
+h1 {
+    margin-top: 5px;
+}
+
+h1, h2, h3, h4 {
+    color: #2b2b2b;
+}
+
+h2:after {
+    content: ' ';
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none;
+    position: absolute;
+    margin-left: 8px;
+}
+
+h1:hover a, h2:hover a, h3:hover a, h4:hover a, h5:hover a, h6:hover a {
+    color: #a5a5a5;
+    display: initial;
+}
+
+.nav.nav-tabs > li > a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.tab-content {
+    padding-top: 8px;
+}
+
+.table {
+    margin-bottom: 8px;
+}
+
+pre {
+    border-radius: 0px;
+    border: none;
+}
+
+pre code {
+    margin: -9.5px;
+}
+
+.request {
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.response-text-sample {
+    padding: 0px !important;
+}
+
+.response-text-sample pre {
+    margin-bottom: 0px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #2b2b2b;
+    padding-top: 20px;
+}
+
+#sidebar-wrapper ul {
+    width: 250px;
+}
+
+#sidebar-wrapper ul li {
+    margin-right: 10px;
+}
+
+#sidebar-wrapper ul li a:hover {
+    background: inherit;
+    text-decoration: none;
+}
+
+#sidebar-wrapper ul li a {
+    display: block;
+    color: #ECF0F1;
+    padding: 6px 15px;
+}
+
+#sidebar-wrapper ul li ul {
+    padding-left: 25px;
+}
+
+#sidebar-wrapper ul li ul li a {
+    padding: 1px 0px;
+}
+
+#sidebar-wrapper ul li a:hover,
+#sidebar-wrapper ul li a:focus {
+    color: #e0c46c;
+    border-right: solid 1px #e0c46c;
+}
+
+#sidebar-wrapper ul li.active > a {
+    color: #e0c46c;
+    border-right: solid 3px #e0c46c;
+}
+
+#sidebar-wrapper ul li:not(.active) ul {
+    display: none;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px 15px 15px 250px;
+}
+</style>
+</head>
+<body data-spy="scroll" data-target=".scrollspy">
+<div id="sidebar-wrapper">
+    <div class="scrollspy">
+    <ul id="main-menu" data-spy="affix" class="nav">
+        <li>
+            <a href="#doc-general-notes">General notes</a>
+        </li>
+        
+        <li>
+            <a href="#doc-api-detail">API detail</a>
+        </li>
+        
+        
+        
+        <li>
+            <a href="#folder-dispositivos">Dispositivos</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-dispositivos-index-dispositivos-todos">Index Dispositivos (Todos)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-dispositivos-index-dispositivo">Index Dispositivo</a>
+                </li>
+                
+                <li>
+                    <a href="#request-dispositivos-guarda-dispositivo">Guarda Dispositivo</a>
+                </li>
+                
+                <li>
+                    <a href="#request-dispositivos-elimina-dispositivo">Elimina Dispositivo</a>
+                </li>
+                
+                <li>
+                    <a href="#request-dispositivos-reemplaza-dispositivo">Reemplaza Dispositivo</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-mediciones">Mediciones</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-mediciones-index-mediciones-todas">Index Mediciones (Todas)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-mediciones-index-mediciones-filtro">Index Mediciones (Filtro)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-mediciones-index-medicion">Index Medicion</a>
+                </li>
+                
+                <li>
+                    <a href="#request-mediciones-guarda-medicion">Guarda Medicion</a>
+                </li>
+                
+                <li>
+                    <a href="#request-mediciones-elimina-medicion">Elimina Medicion</a>
+                </li>
+                
+                <li>
+                    <a href="#request-mediciones-reemplaza-medicion">Reemplaza Medicion</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-electrovalvulas">Electrovalvulas</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-electrovalvulas-index-electrovalvulas-todas">Index Electrovalvulas (Todas)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-electrovalvulas-index-electrovalvula">Index Electrovalvula</a>
+                </li>
+                
+                <li>
+                    <a href="#request-electrovalvulas-guarda-electrovalvula">Guarda Electrovalvula</a>
+                </li>
+                
+                <li>
+                    <a href="#request-electrovalvulas-elimina-electrovalvula">Elimina Electrovalvula</a>
+                </li>
+                
+                <li>
+                    <a href="#request-electrovalvulas-reemplaza-electrovalvula">Reemplaza Electrovalvula</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+        <li>
+            <a href="#folder-log-riegos">Log_Riegos</a>
+            <ul>
+                
+                <li>
+                    <a href="#request-log-riegos-index-log-riegos-todos">Index Log_Riegos (Todos)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-log-riegos-index-log-riegos-filtro">Index Log_Riegos (Filtro)</a>
+                </li>
+                
+                <li>
+                    <a href="#request-log-riegos-index-log-riego">Index Log_Riego</a>
+                </li>
+                
+                <li>
+                    <a href="#request-log-riegos-guarda-log-riego">Guarda Log_Riego</a>
+                </li>
+                
+                <li>
+                    <a href="#request-log-riegos-elimina-log-riego">Elimina Log_Riego</a>
+                </li>
+                
+                <li>
+                    <a href="#request-log-riegos-reemplaza-log-riego">Reemplaza Log_Riego</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+    </ul>
+</div>
+
+</div>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Api Riego Automatizado</h1>
+
+                <h2 id="doc-general-notes">
+                    General notes
+                    <a href="#doc-general-notes"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                <h1>Description</h1>
+
+<p>API para la gestion de las tablas de datos de la aplicacion de riego automatico</p>
+
+
+                
+
+                <h2 id="doc-api-detail">
+                    API detail
+                    <a href="#doc-api-detail"><i class="glyphicon glyphicon-link"></i></a>
+                </h2>
+
+                
+
+
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-dispositivos">
+                        Dispositivos
+                        <a href="#folder-dispositivos"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-dispositivos-index-dispositivos-todos">
+                            Index Dispositivos (Todos)
+                            <a href="#request-dispositivos-index-dispositivos-todos"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-dispositivos-index-dispositivos-todos-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-dispositivos-index-dispositivos-todos-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-dispositivos-index-dispositivos-todos-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/dispositivos/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-dispositivos-index-dispositivos-todos-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/dispositivos/ HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-dispositivos-index-dispositivos-todos-responses-4afd0346-715c-4a85-bacd-a0f796f46815" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-dispositivos-index-dispositivos-todos-responses-4afd0346-715c-4a85-bacd-a0f796f46815">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "dispositivoId": 1,
+        "nombre": "Sensor 1",
+        "ubicacion": "Patio",
+        "electrovalvulaId": 1
+    },
+    {
+        "dispositivoId": 2,
+        "nombre": "Sensor 2",
+        "ubicacion": "Cocina",
+        "electrovalvulaId": 2
+    },
+    {
+        "dispositivoId": 3,
+        "nombre": "Sensor 3",
+        "ubicacion": "Jardin Delantero",
+        "electrovalvulaId": 3
+    },
+    {
+        "dispositivoId": 4,
+        "nombre": "Sensor 4",
+        "ubicacion": "Living",
+        "electrovalvulaId": 4
+    },
+    {
+        "dispositivoId": 5,
+        "nombre": "Sensor 5",
+        "ubicacion": "Habitacion 1",
+        "electrovalvulaId": 5
+    },
+    {
+        "dispositivoId": 6,
+        "nombre": "Sensor 6",
+        "ubicacion": "Habitacion 2",
+        "electrovalvulaId": 6
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-dispositivos-index-dispositivo">
+                            Index Dispositivo
+                            <a href="#request-dispositivos-index-dispositivo"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-dispositivos-index-dispositivo-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-dispositivos-index-dispositivo-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-dispositivos-index-dispositivo-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/dispositivos/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-dispositivos-index-dispositivo-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/dispositivos/ HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-dispositivos-index-dispositivo-responses-eeef2d72-be6f-4b18-8d97-a264fdc998ca" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-index-dispositivo-responses-f4c6577e-e30d-4817-a76c-6bc1dbe56643" data-toggle="tab">
+                                        
+                                            Ejecucion sin datos devueltos
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-index-dispositivo-responses-75eb4f2d-33a8-4c08-b577-c90c5fe55b33" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-dispositivos-index-dispositivo-responses-eeef2d72-be6f-4b18-8d97-a264fdc998ca">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-index-dispositivo-responses-f4c6577e-e30d-4817-a76c-6bc1dbe56643">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-index-dispositivo-responses-75eb4f2d-33a8-4c08-b577-c90c5fe55b33">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "dispositivoId": 1,
+        "nombre": "Sensor 1",
+        "ubicacion": "Patio",
+        "electrovalvulaId": 1
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-dispositivos-guarda-dispositivo">
+                            Guarda Dispositivo
+                            <a href="#request-dispositivos-guarda-dispositivo"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-dispositivos-guarda-dispositivo-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-dispositivos-guarda-dispositivo-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-dispositivos-guarda-dispositivo-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "nombre": "",
+    "ubicacion": "",
+    "electrovalvulaId": 3.5
+}' "localhost:3000/api/dispositivos/"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-dispositivos-guarda-dispositivo-example-http">
+                                    <pre><code class="hljs http">POST 3000/api/dispositivos/ HTTP/1.1
+Host: 
+
+{
+    "nombre": "",
+    "ubicacion": "",
+    "electrovalvulaId": 3.5
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-dispositivos-guarda-dispositivo-responses-f9ca0585-9eba-439f-b62b-0ba2390a35d3" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-guarda-dispositivo-responses-74510c6e-bd9b-4d44-8a77-4d3b3d8c835b" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-dispositivos-guarda-dispositivo-responses-f9ca0585-9eba-439f-b62b-0ba2390a35d3">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "",
+            "msg": "El campo 'nombre' debe existir y no estar vacio",
+            "param": "nombre",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "El campo 'ubicacion' debe existir y no estar vacio",
+            "param": "ubicacion",
+            "location": "body"
+        },
+        {
+            "value": 3.5,
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-guarda-dispositivo-responses-74510c6e-bd9b-4d44-8a77-4d3b3d8c835b">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Dispositivo guardado",
+    "dispositivoId": 8
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-dispositivos-elimina-dispositivo">
+                            Elimina Dispositivo
+                            <a href="#request-dispositivos-elimina-dispositivo"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-dispositivos-elimina-dispositivo-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-dispositivos-elimina-dispositivo-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-dispositivos-elimina-dispositivo-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE "localhost:3000/api/dispositivos/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-dispositivos-elimina-dispositivo-example-http">
+                                    <pre><code class="hljs http">DELETE 3000/api/dispositivos/1 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-dispositivos-elimina-dispositivo-responses-011f16e5-5601-4429-b683-c7521b977f76" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-elimina-dispositivo-responses-4dc1d33d-b22d-441c-9cd8-b56a3091d7ef" data-toggle="tab">
+                                        
+                                            Dispositivo no encontrado
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-elimina-dispositivo-responses-a8c7a34f-6241-4239-a53c-101b6aab5e03" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-dispositivos-elimina-dispositivo-responses-011f16e5-5601-4429-b683-c7521b977f76">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-elimina-dispositivo-responses-4dc1d33d-b22d-441c-9cd8-b56a3091d7ef">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-elimina-dispositivo-responses-a8c7a34f-6241-4239-a53c-101b6aab5e03">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Dispositivo eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-dispositivos-reemplaza-dispositivo">
+                            Reemplaza Dispositivo
+                            <a href="#request-dispositivos-reemplaza-dispositivo"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-dispositivos-reemplaza-dispositivo-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-dispositivos-reemplaza-dispositivo-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-dispositivos-reemplaza-dispositivo-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -d '{
+        "nombre": "Sensor A",
+        "ubicacion": "Balcon",
+        "electrovalvulaId": 2
+}' "localhost:3000/api/dispositivos/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-dispositivos-reemplaza-dispositivo-example-http">
+                                    <pre><code class="hljs http">PUT 3000/api/dispositivos/1 HTTP/1.1
+Host: 
+
+{
+        "nombre": "Sensor A",
+        "ubicacion": "Balcon",
+        "electrovalvulaId": 2
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-dispositivos-reemplaza-dispositivo-responses-19f96548-aadc-4e5d-b523-c34b2cbe0d83" data-toggle="tab">
+                                        
+                                            Dispositivo no encontrado
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-reemplaza-dispositivo-responses-6c6528bf-08b2-4e69-8851-0a6dbde12121" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-dispositivos-reemplaza-dispositivo-responses-1870a643-9527-41c9-b225-9d5272ce81cd" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-dispositivos-reemplaza-dispositivo-responses-19f96548-aadc-4e5d-b523-c34b2cbe0d83">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro reemplazado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-reemplaza-dispositivo-responses-6c6528bf-08b2-4e69-8851-0a6dbde12121">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Dispositivo reemplazado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-dispositivos-reemplaza-dispositivo-responses-1870a643-9527-41c9-b225-9d5272ce81cd">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "params"
+        },
+        {
+            "value": "",
+            "msg": "El campo 'nombre' debe existir y no estar vacio",
+            "param": "nombre",
+            "location": "body"
+        },
+        {
+            "value": "",
+            "msg": "El campo 'ubicacion' debe existir y no estar vacio",
+            "param": "ubicacion",
+            "location": "body"
+        },
+        {
+            "value": 2.5,
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-mediciones">
+                        Mediciones
+                        <a href="#folder-mediciones"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-index-mediciones-todas">
+                            Index Mediciones (Todas)
+                            <a href="#request-mediciones-index-mediciones-todas"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Obtiene todas las mediciones de la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-index-mediciones-todas-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-index-mediciones-todas-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-index-mediciones-todas-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/mediciones"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-index-mediciones-todas-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/mediciones HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-index-mediciones-todas-responses-03901264-396c-428f-a27b-9d1c816c3c44" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-index-mediciones-todas-responses-03901264-396c-428f-a27b-9d1c816c3c44">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "medicionId": 1,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "60",
+        "dispositivoId": 1
+    },
+    {
+        "medicionId": 2,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "40",
+        "dispositivoId": 1
+    },
+    {
+        "medicionId": 3,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "30",
+        "dispositivoId": 2
+    },
+    {
+        "medicionId": 4,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "50",
+        "dispositivoId": 3
+    },
+    {
+        "medicionId": 5,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "33",
+        "dispositivoId": 5
+    },
+    {
+        "medicionId": 6,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "17",
+        "dispositivoId": 4
+    },
+    {
+        "medicionId": 7,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "29",
+        "dispositivoId": 6
+    },
+    {
+        "medicionId": 8,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "20",
+        "dispositivoId": 1
+    },
+    {
+        "medicionId": 9,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "44",
+        "dispositivoId": 4
+    },
+    {
+        "medicionId": 10,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "61",
+        "dispositivoId": 5
+    },
+    {
+        "medicionId": 11,
+        "fecha": "2020-08-08T17:01:45.000Z",
+        "valor": "12",
+        "dispositivoId": 2
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-index-mediciones-filtro">
+                            Index Mediciones (Filtro)
+                            <a href="#request-mediciones-index-mediciones-filtro"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Obtiene todas las mediciones correspondientes a un dispositivo de la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-index-mediciones-filtro-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-index-mediciones-filtro-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-index-mediciones-filtro-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/mediciones?dispositivoId=1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-index-mediciones-filtro-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/mediciones?dispositivoId=1 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-index-mediciones-filtro-responses-900d84a7-5b71-4894-8e72-5c37714a4ea5" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-index-mediciones-filtro-responses-a3098528-ec95-4a88-b3f2-5f62f1fd6618" data-toggle="tab">
+                                        
+                                            Ejecucion sin datos devueltos
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-index-mediciones-filtro-responses-085e0172-8108-40cb-97dc-6d86faa0eb13" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-index-mediciones-filtro-responses-900d84a7-5b71-4894-8e72-5c37714a4ea5">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "medicionId": 1,
+        "fecha": "2020-08-08T17:18:12.000Z",
+        "valor": "60",
+        "dispositivoId": 1
+    },
+    {
+        "medicionId": 2,
+        "fecha": "2020-08-08T17:18:12.000Z",
+        "valor": "40",
+        "dispositivoId": 1
+    },
+    {
+        "medicionId": 8,
+        "fecha": "2020-08-08T17:18:12.000Z",
+        "valor": "20",
+        "dispositivoId": 1
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-index-mediciones-filtro-responses-a3098528-ec95-4a88-b3f2-5f62f1fd6618">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-index-mediciones-filtro-responses-085e0172-8108-40cb-97dc-6d86faa0eb13">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "query"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-index-medicion">
+                            Index Medicion
+                            <a href="#request-mediciones-index-medicion"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Obtiene una medicion de la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-index-medicion-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-index-medicion-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-index-medicion-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/mediciones"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-index-medicion-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/mediciones HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-index-medicion-responses-1f2c74f5-5cc5-42b1-97d1-fc6ea5215686" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-index-medicion-responses-99694f84-27b0-491f-955d-925c52bd2610" data-toggle="tab">
+                                        
+                                            Ejecucion sin datos devueltos
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-index-medicion-responses-ad2590dd-1721-4358-8605-9f08fe72bdd2" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-index-medicion-responses-1f2c74f5-5cc5-42b1-97d1-fc6ea5215686">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "medicionId": 1,
+        "fecha": "2020-08-08T20:46:51.000Z",
+        "valor": "60",
+        "dispositivoId": 1
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-index-medicion-responses-99694f84-27b0-491f-955d-925c52bd2610">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-index-medicion-responses-ad2590dd-1721-4358-8605-9f08fe72bdd2">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'medicionId' debe ser un entero positivo mayor a cero",
+            "param": "medicionId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-guarda-medicion">
+                            Guarda Medicion
+                            <a href="#request-mediciones-guarda-medicion"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Agrega una medicion a la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-guarda-medicion-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-guarda-medicion-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-guarda-medicion-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+    "fecha": "2020-08-20T12:00:00.000Z",
+    "valor": "20",
+    "dispositivoId": 1
+ }' "localhost:3000/api/mediciones"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-guarda-medicion-example-http">
+                                    <pre><code class="hljs http">POST 3000/api/mediciones HTTP/1.1
+Host: 
+
+{
+    "fecha": "2020-08-20T12:00:00.000Z",
+    "valor": "20",
+    "dispositivoId": 1
+ }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-guarda-medicion-responses-7d777ace-71b9-490f-9b65-3eb6e4e9a8ff" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-guarda-medicion-responses-b0acc17d-1fcd-461e-b3b0-75ca5aa4e651" data-toggle="tab">
+                                        
+                                            Errores de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-guarda-medicion-responses-7d777ace-71b9-490f-9b65-3eb6e4e9a8ff">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Medicion guardada",
+    "medicionId": 12
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-guarda-medicion-responses-b0acc17d-1fcd-461e-b3b0-75ca5aa4e651">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'fecha' debe ser formato ISO 8601",
+            "param": "fecha",
+            "location": "body"
+        },
+        {
+            "value": "B",
+            "msg": "El parametro 'valor' debe ser un valor entre 0 y 100",
+            "param": "valor",
+            "location": "body"
+        },
+        {
+            "value": -1,
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-elimina-medicion">
+                            Elimina Medicion
+                            <a href="#request-mediciones-elimina-medicion"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Elimina una medicion de la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-elimina-medicion-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-elimina-medicion-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-elimina-medicion-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE "localhost:3000/api/mediciones/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-elimina-medicion-example-http">
+                                    <pre><code class="hljs http">DELETE 3000/api/mediciones/1 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-elimina-medicion-responses-4d9d12fc-8538-4295-afc3-27bd20632a75" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-elimina-medicion-responses-127c310a-8e7f-4a45-88a8-fd5bd90c3b27" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-elimina-medicion-responses-36e2fedd-4695-444e-87a2-e62212ec173d" data-toggle="tab">
+                                        
+                                            Medicion no encontrada
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-elimina-medicion-responses-4d9d12fc-8538-4295-afc3-27bd20632a75">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Medicion eliminada"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-elimina-medicion-responses-127c310a-8e7f-4a45-88a8-fd5bd90c3b27">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'medicionId' debe ser un entero positivo mayor a cero",
+            "param": "medicionId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-elimina-medicion-responses-36e2fedd-4695-444e-87a2-e62212ec173d">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-mediciones-reemplaza-medicion">
+                            Reemplaza Medicion
+                            <a href="#request-mediciones-reemplaza-medicion"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div><p>Reemplaza los datos de una medicion en la base de datos</p>
+</div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-mediciones-reemplaza-medicion-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-mediciones-reemplaza-medicion-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-mediciones-reemplaza-medicion-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -d '{
+    "fecha": "2020-08-25T12:00:00.000Z",
+    "valor": "90",
+    "dispositivoId": 3
+ }' "localhost:3000/api/mediciones/2"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-mediciones-reemplaza-medicion-example-http">
+                                    <pre><code class="hljs http">PUT 3000/api/mediciones/2 HTTP/1.1
+Host: 
+
+{
+    "fecha": "2020-08-25T12:00:00.000Z",
+    "valor": "90",
+    "dispositivoId": 3
+ }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-mediciones-reemplaza-medicion-responses-6400730a-ed79-4d41-9927-a8d98eefa480" data-toggle="tab">
+                                        
+                                            Errores de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-reemplaza-medicion-responses-67d01033-0970-4d4a-9716-ddf796028451" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-mediciones-reemplaza-medicion-responses-b7205ed1-06f3-4ccb-9b35-1523f4f03b7b" data-toggle="tab">
+                                        
+                                            Medicion no encontrada
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-mediciones-reemplaza-medicion-responses-6400730a-ed79-4d41-9927-a8d98eefa480">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'medicionId' debe ser un entero positivo mayor a cero",
+            "param": "medicionId",
+            "location": "params"
+        },
+        {
+            "value": "B",
+            "msg": "El parametro 'fecha' debe ser formato ISO 8601",
+            "param": "fecha",
+            "location": "body"
+        },
+        {
+            "value": "C",
+            "msg": "El parametro 'valor' debe ser un valor entre 0 y 100",
+            "param": "valor",
+            "location": "body"
+        },
+        {
+            "value": -1,
+            "msg": "El parametro 'dispositivoId' debe ser un entero positivo mayor a cero",
+            "param": "dispositivoId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-reemplaza-medicion-responses-67d01033-0970-4d4a-9716-ddf796028451">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Medicion reemplazada"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-mediciones-reemplaza-medicion-responses-b7205ed1-06f3-4ccb-9b35-1523f4f03b7b">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro reemplazando"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-electrovalvulas">
+                        Electrovalvulas
+                        <a href="#folder-electrovalvulas"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-electrovalvulas-index-electrovalvulas-todas">
+                            Index Electrovalvulas (Todas)
+                            <a href="#request-electrovalvulas-index-electrovalvulas-todas"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-electrovalvulas-index-electrovalvulas-todas-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-electrovalvulas-index-electrovalvulas-todas-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-electrovalvulas-index-electrovalvulas-todas-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/electrovalvulas"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-electrovalvulas-index-electrovalvulas-todas-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/electrovalvulas HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-electrovalvulas-index-electrovalvulas-todas-responses-8a4c8d55-de5c-4e4b-9f68-c355307eaccb" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-electrovalvulas-index-electrovalvulas-todas-responses-8a4c8d55-de5c-4e4b-9f68-c355307eaccb">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "electrovalvulaId": 1,
+        "nombre": "eLPatio"
+    },
+    {
+        "electrovalvulaId": 2,
+        "nombre": "eLCocina"
+    },
+    {
+        "electrovalvulaId": 3,
+        "nombre": "eLJardinDelantero"
+    },
+    {
+        "electrovalvulaId": 4,
+        "nombre": "eLLiving"
+    },
+    {
+        "electrovalvulaId": 5,
+        "nombre": "eLHabitacion1"
+    },
+    {
+        "electrovalvulaId": 6,
+        "nombre": "eLHabitacion2"
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-electrovalvulas-index-electrovalvula">
+                            Index Electrovalvula
+                            <a href="#request-electrovalvulas-index-electrovalvula"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-electrovalvulas-index-electrovalvula-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-electrovalvulas-index-electrovalvula-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-electrovalvulas-index-electrovalvula-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/electrovalvulas"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-electrovalvulas-index-electrovalvula-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/electrovalvulas HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-electrovalvulas-index-electrovalvula-responses-94ebd211-7777-4b12-b7ae-6adf0ae46717" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-index-electrovalvula-responses-7271717c-ba18-4d26-8d74-e5a3ee1e4413" data-toggle="tab">
+                                        
+                                            Ejecucion sin datos devueltos
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-index-electrovalvula-responses-a2a3565a-4352-420d-b1b7-b0303d12c18c" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-electrovalvulas-index-electrovalvula-responses-94ebd211-7777-4b12-b7ae-6adf0ae46717">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "electrovalvulaId": 1,
+        "nombre": "eLPatio"
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-index-electrovalvula-responses-7271717c-ba18-4d26-8d74-e5a3ee1e4413">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-index-electrovalvula-responses-a2a3565a-4352-420d-b1b7-b0303d12c18c">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-electrovalvulas-guarda-electrovalvula">
+                            Guarda Electrovalvula
+                            <a href="#request-electrovalvulas-guarda-electrovalvula"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-electrovalvulas-guarda-electrovalvula-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-electrovalvulas-guarda-electrovalvula-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-electrovalvulas-guarda-electrovalvula-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '{
+        "nombre": "eLBalcon"
+}' "localhost:3000/api/electrovalvulas"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-electrovalvulas-guarda-electrovalvula-example-http">
+                                    <pre><code class="hljs http">POST 3000/api/electrovalvulas HTTP/1.1
+Host: 
+
+{
+        "nombre": "eLBalcon"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-electrovalvulas-guarda-electrovalvula-responses-9f06609c-8fb7-43df-9d7a-309d14fbf52b" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-guarda-electrovalvula-responses-870aa1ba-d2da-44d8-8834-5a0ceda4e581" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-electrovalvulas-guarda-electrovalvula-responses-9f06609c-8fb7-43df-9d7a-309d14fbf52b">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "",
+            "msg": "El campo 'nombre' debe existir y no estar vacio",
+            "param": "nombre",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-guarda-electrovalvula-responses-870aa1ba-d2da-44d8-8834-5a0ceda4e581">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Electrovalvula guardada",
+    "electrovalvulaId": 7
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-electrovalvulas-elimina-electrovalvula">
+                            Elimina Electrovalvula
+                            <a href="#request-electrovalvulas-elimina-electrovalvula"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-electrovalvulas-elimina-electrovalvula-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-electrovalvulas-elimina-electrovalvula-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-electrovalvulas-elimina-electrovalvula-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE "localhost:3000/api/electrovalvulas/7"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-electrovalvulas-elimina-electrovalvula-example-http">
+                                    <pre><code class="hljs http">DELETE 3000/api/electrovalvulas/7 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-electrovalvulas-elimina-electrovalvula-responses-48b7cd4d-6156-4d08-828f-77dda6457daa" data-toggle="tab">
+                                        
+                                            Electrovalvula no encontrada
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-elimina-electrovalvula-responses-fbb58382-fc8a-4d2c-a202-66924888cfc3" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-elimina-electrovalvula-responses-e9dc2b26-f904-4ad1-9195-4a21ecb0aeeb" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-electrovalvulas-elimina-electrovalvula-responses-48b7cd4d-6156-4d08-828f-77dda6457daa">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-elimina-electrovalvula-responses-fbb58382-fc8a-4d2c-a202-66924888cfc3">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Electrovalvula eliminada"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-elimina-electrovalvula-responses-e9dc2b26-f904-4ad1-9195-4a21ecb0aeeb">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-electrovalvulas-reemplaza-electrovalvula">
+                            Reemplaza Electrovalvula
+                            <a href="#request-electrovalvulas-reemplaza-electrovalvula"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-electrovalvulas-reemplaza-electrovalvula-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-electrovalvulas-reemplaza-electrovalvula-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-electrovalvulas-reemplaza-electrovalvula-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -d '{
+    "nombre": "eLBalcon"
+}' "localhost:3000/api/electrovalvulas/20"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-electrovalvulas-reemplaza-electrovalvula-example-http">
+                                    <pre><code class="hljs http">PUT 3000/api/electrovalvulas/20 HTTP/1.1
+Host: 
+
+{
+    "nombre": "eLBalcon"
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-electrovalvulas-reemplaza-electrovalvula-responses-8cfb14d8-e863-40c0-b6cc-9d138470a4a5" data-toggle="tab">
+                                        
+                                            Ejecucion Correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-reemplaza-electrovalvula-responses-ad97ae9b-5f36-41c8-9ad0-db922066a254" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-electrovalvulas-reemplaza-electrovalvula-responses-0da7f5f0-352b-491b-b5c1-8f333ccd83ef" data-toggle="tab">
+                                        
+                                            Electrovalvula no encontrada
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-electrovalvulas-reemplaza-electrovalvula-responses-8cfb14d8-e863-40c0-b6cc-9d138470a4a5">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Electrovalvula reemplazada"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-reemplaza-electrovalvula-responses-ad97ae9b-5f36-41c8-9ad0-db922066a254">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "params"
+        },
+        {
+            "value": "",
+            "msg": "El campo 'nombre' debe existir y no estar vacio",
+            "param": "nombre",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-electrovalvulas-reemplaza-electrovalvula-responses-0da7f5f0-352b-491b-b5c1-8f333ccd83ef">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro reemplazado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+                
+                <div class="endpoints-group">
+                    <h3 id="folder-log-riegos">
+                        Log_Riegos
+                        <a href="#folder-log-riegos"><i class="glyphicon glyphicon-link"></i></a>
+                    </h3>
+
+                    <div></div>
+
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-index-log-riegos-todos">
+                            Index Log_Riegos (Todos)
+                            <a href="#request-log-riegos-index-log-riegos-todos"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-index-log-riegos-todos-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-index-log-riegos-todos-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riegos-todos-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/logRiegos"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-index-log-riegos-todos-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/logRiegos HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-index-log-riegos-todos-responses-d5028abf-75e1-4e9d-88f3-f88668203f8c" data-toggle="tab">
+                                        
+                                            Response
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riegos-todos-responses-d5028abf-75e1-4e9d-88f3-f88668203f8c">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "logRiegoId": 1,
+        "apertura": 1,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    },
+    {
+        "logRiegoId": 2,
+        "apertura": 0,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    },
+    {
+        "logRiegoId": 3,
+        "apertura": 1,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    },
+    {
+        "logRiegoId": 4,
+        "apertura": 0,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 2
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-index-log-riegos-filtro">
+                            Index Log_Riegos (Filtro)
+                            <a href="#request-log-riegos-index-log-riegos-filtro"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-index-log-riegos-filtro-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-index-log-riegos-filtro-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riegos-filtro-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/logRiegos?electrovalvulaId=A"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-index-log-riegos-filtro-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/logRiegos?electrovalvulaId=A HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-index-log-riegos-filtro-responses-8fcc4624-6fbd-4870-9116-27a1701c7ab1" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-index-log-riegos-filtro-responses-c12e0210-dac0-4a01-bc18-6ee21dc2f82a" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-index-log-riegos-filtro-responses-99374f31-5d44-47e9-a8aa-8393ff5db3c4" data-toggle="tab">
+                                        
+                                            Ningun valor devuelto
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riegos-filtro-responses-8fcc4624-6fbd-4870-9116-27a1701c7ab1">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "logRiegoId": 4,
+        "apertura": 0,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 2
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-index-log-riegos-filtro-responses-c12e0210-dac0-4a01-bc18-6ee21dc2f82a">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "query"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-index-log-riegos-filtro-responses-99374f31-5d44-47e9-a8aa-8393ff5db3c4">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-index-log-riego">
+                            Index Log_Riego
+                            <a href="#request-log-riegos-index-log-riego"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-index-log-riego-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-index-log-riego-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riego-example-curl">
+                                    <pre><code class="hljs curl">curl -X GET "localhost:3000/api/logRiegos/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-index-log-riego-example-http">
+                                    <pre><code class="hljs http">GET 3000/api/logRiegos/1 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-index-log-riego-responses-e380988d-d528-4f7a-9459-52ea86ec26e9" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-index-log-riego-responses-e4dd5615-c800-4937-8879-d56c33b649c2" data-toggle="tab">
+                                        
+                                            Ningun valor devuelto
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-index-log-riego-responses-3e191999-a700-4f45-b1b7-c1a40348d859" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-index-log-riego-responses-e380988d-d528-4f7a-9459-52ea86ec26e9">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>[
+    {
+        "logRiegoId": 1,
+        "apertura": 1,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    }
+]</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-index-log-riego-responses-e4dd5615-c800-4937-8879-d56c33b649c2">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro devuelto"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-index-log-riego-responses-3e191999-a700-4f45-b1b7-c1a40348d859">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'logRiegoId' debe ser un entero positivo mayor a cero",
+            "param": "logRiegoId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-guarda-log-riego">
+                            Guarda Log_Riego
+                            <a href="#request-log-riegos-guarda-log-riego"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-guarda-log-riego-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-guarda-log-riego-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-guarda-log-riego-example-curl">
+                                    <pre><code class="hljs curl">curl -X POST -d '    {
+        "apertura": 1,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    }' "localhost:3000/api/logRiegos"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-guarda-log-riego-example-http">
+                                    <pre><code class="hljs http">POST 3000/api/logRiegos HTTP/1.1
+Host: 
+
+    {
+        "apertura": 1,
+        "fecha": "2020-08-08T17:46:51.000Z",
+        "electrovalvulaId": 1
+    }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-guarda-log-riego-responses-c58ebc9a-a034-46f0-81f4-36df075f1d16" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-guarda-log-riego-responses-007b3439-1763-4856-9f70-86da37753aa9" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-guarda-log-riego-responses-c58ebc9a-a034-46f0-81f4-36df075f1d16">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "2020-08-08T17:46:51.000Zooooo",
+            "msg": "El parametro 'fecha' debe ser formato ISO 8601",
+            "param": "fecha",
+            "location": "body"
+        },
+        {
+            "value": 3,
+            "msg": "El parametro 'apertura' debe ser 0 o 1",
+            "param": "apertura",
+            "location": "body"
+        },
+        {
+            "value": -1,
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-guarda-log-riego-responses-007b3439-1763-4856-9f70-86da37753aa9">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Log Riego guardado",
+    "logRiegoId": 5
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-elimina-log-riego">
+                            Elimina Log_Riego
+                            <a href="#request-log-riegos-elimina-log-riego"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-elimina-log-riego-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-elimina-log-riego-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-elimina-log-riego-example-curl">
+                                    <pre><code class="hljs curl">curl -X DELETE "localhost:3000/api/logRiegos/1"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-elimina-log-riego-example-http">
+                                    <pre><code class="hljs http">DELETE 3000/api/logRiegos/1 HTTP/1.1
+Host: </code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-elimina-log-riego-responses-5e0f474c-1e7b-4c41-abd0-b8f779ae5855" data-toggle="tab">
+                                        
+                                            Log_Riego no encontrado
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-elimina-log-riego-responses-6d3eb2d7-5df3-4855-ae4e-92e1c07a692f" data-toggle="tab">
+                                        
+                                            Error de validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-elimina-log-riego-responses-4064c59d-b0d8-4c88-bd4e-7cf7d32a61cd" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-elimina-log-riego-responses-5e0f474c-1e7b-4c41-abd0-b8f779ae5855">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-elimina-log-riego-responses-6d3eb2d7-5df3-4855-ae4e-92e1c07a692f">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'logRiegoId' debe ser un entero positivo mayor a cero",
+            "param": "logRiegoId",
+            "location": "params"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-elimina-log-riego-responses-4064c59d-b0d8-4c88-bd4e-7cf7d32a61cd">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Log Riego eliminado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+                    
+                    <div class="request">
+
+                        <h4 id="request-log-riegos-reemplaza-log-riego">
+                            Reemplaza Log_Riego
+                            <a href="#request-log-riegos-reemplaza-log-riego"><i class="glyphicon glyphicon-link"></i></a>
+                        </h4>
+
+                        <div></div>
+
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#request-log-riegos-reemplaza-log-riego-example-curl" data-toggle="tab">Curl</a></li>
+                                <li role="presentation"><a href="#request-log-riegos-reemplaza-log-riego-example-http" data-toggle="tab">HTTP</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="request-log-riegos-reemplaza-log-riego-example-curl">
+                                    <pre><code class="hljs curl">curl -X PUT -d ' {
+        "apertura": 1,
+        "fecha": "2020-09-08T20:46:51.000Z",
+        "electrovalvulaId": 2
+ }' "localhost:3000/api/logRiegos/2"</code></pre>
+                                </div>
+                                <div class="tab-pane" id="request-log-riegos-reemplaza-log-riego-example-http">
+                                    <pre><code class="hljs http">PUT 3000/api/logRiegos/2 HTTP/1.1
+Host: 
+
+ {
+        "apertura": 1,
+        "fecha": "2020-09-08T20:46:51.000Z",
+        "electrovalvulaId": 2
+ }</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div>
+                            <ul class="nav nav-tabs" role="tablist">
+                                
+                                <li role="presentation" class="active">
+                                    <a href="#request-log-riegos-reemplaza-log-riego-responses-446a1a49-185b-4262-a310-35851e81b803" data-toggle="tab">
+                                        
+                                            Ejecucion correcta
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-reemplaza-log-riego-responses-ebdeb43a-f51c-41e8-92f9-6b6309890296" data-toggle="tab">
+                                        
+                                            Error en validacion
+                                        
+                                    </a>
+                                </li>
+                                
+                                <li role="presentation">
+                                    <a href="#request-log-riegos-reemplaza-log-riego-responses-4c1cc2aa-ce87-4520-a91e-180a5a0e857b" data-toggle="tab">
+                                        
+                                            Log_Riego no encontrado
+                                        
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                            <div class="tab-content">
+                                
+                                <div class="tab-pane active" id="request-log-riegos-reemplaza-log-riego-responses-446a1a49-185b-4262-a310-35851e81b803">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>200 OK</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Log Riego reemplazado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-reemplaza-log-riego-responses-ebdeb43a-f51c-41e8-92f9-6b6309890296">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>400 Bad Request</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Validation Failed",
+    "details": [
+        {
+            "value": "A",
+            "msg": "El parametro 'logRiegoId' debe ser un entero positivo mayor a cero",
+            "param": "logRiegoId",
+            "location": "params"
+        },
+        {
+            "value": "2020-09-08T20:46:51.000Zaaaa",
+            "msg": "El parametro 'fecha' debe ser formato ISO 8601",
+            "param": "fecha",
+            "location": "body"
+        },
+        {
+            "value": 12,
+            "msg": "El parametro 'apertura' debe ser 0 o 1",
+            "param": "apertura",
+            "location": "body"
+        },
+        {
+            "value": -2,
+            "msg": "El parametro 'electrovalvulaId' debe ser un entero positivo mayor a cero",
+            "param": "electrovalvulaId",
+            "location": "body"
+        }
+    ]
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                                <div class="tab-pane" id="request-log-riegos-reemplaza-log-riego-responses-4c1cc2aa-ce87-4520-a91e-180a5a0e857b">
+                                    <table class="table table-bordered">
+                                        <tr><th style="width: 20%;">Status</th><td>404 Not Found</td></tr>
+                                        
+                                        <tr><th style="width: 20%;">Content-Type</th><td>application/json; charset=utf-8</td></tr>
+                                        
+                                        
+                                            
+                                            <tr><td class="response-text-sample" colspan="2">
+                                                <pre><code>{
+    "message": "Ningun registro reemplazado"
+}</code></pre>
+                                            </td></tr>
+                                            
+                                        
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+
+                        <hr>
+                    </div>
+                    
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("table:not(.table)").addClass('table table-bordered');
+    });
+</script>
+</body>
+</html>
