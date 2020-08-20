@@ -28,6 +28,7 @@ export class DispositivoPage /*implements OnInit*/ {
 
   public myChart;
   private chartOptions;
+  private timeoutObj;
   private intervalObj;
   private valorMedicion: number;
 
@@ -38,67 +39,98 @@ export class DispositivoPage /*implements OnInit*/ {
     private medicionService:MedicionesService
     ) { }
 
-   async ionViewWillEnter() {
-    let idDispositivo = this.router.snapshot.paramMap.get('id');
+  async ngOnInit() { };
 
+  async ionViewWillEnter() { 
+    
+    // Obtiene el id de dispositivo recibido por parametro
+    let idDispositivo = this.router.snapshot.paramMap.get('id');    
     try {
-      this.dispositivo = <Dispositivo>await this.dispositivoService.getDispositivo(idDispositivo)
+      this.dispositivo = <Dispositivo>await this.dispositivoService.getDispositivo(idDispositivo);
+      this.dispositivoLoaded = true;
+    }
+    catch(error) {
+      this.dispositivoLoaded = false;
+      console.log(error);
+      return;
+    }   
+    
+    // Obtiene el estado de la valvula y la ultima medicion
+    if(this.dispositivoLoaded) {
       try {
+        // Estado valvula
         this.logRiego = <LogRiego> await this.logRiegoService.getLastLogRiegoByElectrovalvulaId(this.dispositivo.electrovalvulaId)
         if(this.logRiego.apertura == 1) {
           this.estadoValvula = true;
+          console.log("Ultimo estado valvula: abierta");
         }
         else {
           this.estadoValvula = false;
+          console.log("Ultimo estado valvula: cerrada");
         }
       }
-      catch {
+      catch { // Si no hay log => Valvula cerrada
         this.estadoValvula = false;
+        console.log("Ultimo estado valvula: No se obtuvo registro");
       }
+      // Ultima medicion
       try {
         this.medicion = <Medicion> await this.medicionService.getLastMedicionByDispositivoId(this.dispositivo.dispositivoId)
         this.valorMedicion = <number> this.medicion.valor;
         console.log("Ultima medición leida de BD: " + this.medicion.valor);
       }
       catch {
-        this.valorMedicion=0;
+        this.valorMedicion=0; // Si no hay => 0
+        console.log("Ultima medición leida de BD: No se obtuvo registro");
       }
-      this.generarChart()
+
+      // Genera el grafico
+      this.generarChart();
+
       this.setChartValue();
-      this.dispositivoLoaded = true;
-    }
-    catch (error)
-    {
-      this.dispositivoLoaded = false;
-      console.log(error);
-      return;
+      this.timeoutObj = setTimeout(()=>{ // Muestro el valor de BD durante 5 segundos
+        this.intervalObj = setInterval(() => { // Varia el valor del gauge cada 1 segundo segun el estado de la valvula
+          if(this.estadoValvula) {
+            this.valorMedicion = this.valorMedicion - 1
+            if(this.valorMedicion < 0)
+              this.valorMedicion = 0;
+          }
+          else {
+            this.valorMedicion = +this.valorMedicion + 2;
+            if(this.valorMedicion > 100)
+              this.valorMedicion = 100;
+          }
+          this.setChartValue();
+        }, 1000);
+      },5000); 
+
     }
   }
 
-  ionViewDidEnter() {
-    setTimeout(()=>{ // Muestro el valor de BD durante 5 segundos
-      this.intervalObj = setInterval(() => { // Varia el valor del gauge cada 1 segundo segun el estado de la valvula
-        if(this.estadoValvula) {
-          this.valorMedicion = this.valorMedicion - 1
-          if(this.valorMedicion < 0)
-          this.valorMedicion = 0;
-        }
-        else {
-          this.valorMedicion = +this.valorMedicion + 2;
-          if(this.valorMedicion > 100)
-            this.valorMedicion = 100;
-        }
-        this.setChartValue();
-      }, 1000);
-    },6000);
-    
-  }
-
+  // Destruye los timers cuando se esta abandonando la pagina
   ionViewWillLeave() {
-    clearInterval(this.intervalObj);
+    if (this.timeoutObj) {
+      clearTimeout(this.timeoutObj);
+      console.log("Timeout destruido");
+    }
+    if (this.intervalObj) {
+      clearInterval(this.intervalObj);
+      console.log("Interval destruido");
+    }
   }
 
+  // Cambia el valor del medidor
+  public setChartValue() {
+    console.log("Valor cambiado");
+    var point = this.myChart.series[0].points[0];       
+    point.update(this.valorMedicion);
+  };
+
+  // Genera el medidor
   generarChart() {
+    let serie = [0];
+    serie[0] = +this.valorMedicion;
+    console.log(serie);
     this.chartOptions={
       chart: {
           type: 'gauge',
@@ -113,7 +145,6 @@ export class DispositivoPage /*implements OnInit*/ {
 
         ,credits:{enabled:false}
         
-           
         ,pane: {
             startAngle: -150,
             endAngle: 150
@@ -162,21 +193,18 @@ export class DispositivoPage /*implements OnInit*/ {
   
     series: [{
         name: 'kPA',
-        data: [0],
+        data: serie,
         tooltip: {
             valueSuffix: ' kPA'
-        }
+        },
+        animation: false
     }]
 
     };
-    this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+    this.myChart = Highcharts.chart('highcharts', this.chartOptions);
   }
 
-  setChartValue() {
-    var point = this.myChart.series[0].points[0];       
-    point.update(this.valorMedicion);
-  };
-
+  // Evento del click en el boton de electrovalvula
   public valveOperate(event) {
     if(this.estadoValvula) {
       this.estadoValvula = false
