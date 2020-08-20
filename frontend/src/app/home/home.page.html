@@ -16,7 +16,7 @@
       <ion-col size-sm="9" offset-sm="1.5" size-md="6" offset-md="3" size-lg="4" offset-lg="4" size-xl="3" offset-lg="4.5">
         <ion-img *ngIf="((listadoLoaded!==undefined) && !listadoLoaded)" src='assets/images/404.png'></ion-img>
         <ion-list>
-          <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="{{dispositivo.dispositivoId}}" >
+          <ion-item *ngFor="let dispositivo of this.listadoDispositivo" routerLink="{{dispositivo.dispositivoId}}" routerDirection="forward" >
             <ion-avatar slot="start">
                 <ion-icon size="large" name="thermometer"></ion-icon>
             </ion-avatar>
