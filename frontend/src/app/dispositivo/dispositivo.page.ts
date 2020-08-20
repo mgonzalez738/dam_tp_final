@@ -78,6 +78,16 @@ export class DispositivoPage /*implements OnInit*/ {
   ionViewDidEnter() {
     setTimeout(()=>{ // Muestro el valor de BD durante 5 segundos
       this.intervalObj = setInterval(() => { // Varia el valor del gauge cada 1 segundo segun el estado de la valvula
+        if(this.estadoValvula) {
+          this.valorMedicion = this.valorMedicion - 1
+          if(this.valorMedicion < 0)
+          this.valorMedicion = 0;
+        }
+        else {
+          this.valorMedicion = +this.valorMedicion + 2;
+          if(this.valorMedicion > 100)
+            this.valorMedicion = 100;
+        }
         this.setChartValue();
       }, 1000);
     },6000);
@@ -163,17 +173,6 @@ export class DispositivoPage /*implements OnInit*/ {
   }
 
   setChartValue() {
-     
-    if(this.estadoValvula) {
-      this.valorMedicion = this.valorMedicion - 1
-      if(this.valorMedicion < 0)
-      this.valorMedicion = 0;
-    }
-    else {
-      this.valorMedicion = +this.valorMedicion + 2;
-      if(this.valorMedicion > 100)
-        this.valorMedicion = 100;
-    }
     var point = this.myChart.series[0].points[0];       
     point.update(this.valorMedicion);
   };
