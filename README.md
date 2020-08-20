@@ -9,10 +9,10 @@ El objeto de este proyecto es finalizar la asignatura Desarrollo de Aplicaciones
 La aplicación consiste en una SPA (Single Page Aplicaction) que simula la autmatización de un sistema de riego.
 
 <p float="left">
-  <img src="/frontend/doc/img1.png" width="100" />
-  <img src="/img2.png" width="100" /> 
-  <img src="/img3.png" width="100" />
-  <img src="/img3.png" width="100" />
+  <img src="/frontend/doc/img1.png" width="250" />
+  <img src="/frontend/doc/img2.png" width="250" /> 
+  <img src="/frontend/doc/img3.png" width="250" />
+  <img src="/frontend/doc/img4.png" width="250" />
 </p>
 
 ![Aplicacion Smart HOME](/doc/appFiltro.jpg?raw=true "Smart HOME")
