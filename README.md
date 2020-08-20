@@ -10,11 +10,11 @@ La aplicación consiste en una SPA (Single Page Aplicaction) que simula la autom
 
 En la página principal de la aplicación se muestra el listado de sensores de humedad cargados en la base de datos. 
 
-A partir del listado se accede a la pagina de control y visuaización correspondiente a cada sensor. Al ingresar, el medidor muestra durante 5 segundos el último valor almacenado del sensor. Luego, la aplicación simula un cambio de la medición del sensor aumentando o disminuyendo el valor según el estado cerrado o abierto de la electroválvula asociada.
+A partir del listado se accede a la página de control y visuaización correspondiente a cada sensor. Al ingresar, el medidor muestra durante 5 segundos el último valor almacenado del sensor. Luego, la aplicación simula un cambio de la medición del sensor aumentando o disminuyendo el valor según el estado cerrado o abierto de la electroválvula asociada.
 
-Desde esta página es posible comandar la apertura y cierre de la electroválvula. El cambio de estado de la es registrado en la tabla de logs de la base de datos. En cada cierre de la electroválvula el valor del indicador es almacenado en la tabla de mediciones de la base de datos.
+Desde esta página es posible comandar la apertura y cierre de la electroválvula. El cambio de estado de la electroválvula es registrado en la tabla de logs de la base de datos. En cada cierre de la electroválvula el valor del indicador es almacenado en la tabla de mediciones de la base de datos.
 
-Ambos registros, logs y mediciones, pueden accesderse para su visualización desde la misma página.
+Ambos registros, logs y mediciones, pueden accederse para su visualización desde la misma página.
 
 <p float="left">
   <img src="/frontend/doc/img1.png" width="200" />
@@ -41,7 +41,7 @@ En el link https://docs.docker.com/compose/install/ se muestran los pasos para l
 
 ## Correr la aplicación
 
-Clonar o descargar la aplicacion desde Git Hub.
+Clonar o descargar la aplicación desde Git Hub.
 
 ```sh
 git clone https://github.com/mgonzalez738/dam_tp_final.git
