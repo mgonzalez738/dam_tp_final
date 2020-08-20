@@ -29,6 +29,7 @@ app.get('/api', function (req, res) { // Documentacion
   res.sendFile('/doc/apiDoc.html',  { root: __dirname });
 });
 
+
 app.get('/', function (req, res) { // Frontend
   res.sendFile('/index.html',  { root: __dirname + "/../frontend/wwww"});
 });
