@@ -8,6 +8,14 @@ El objeto de este proyecto es finalizar la asignatura Desarrollo de Aplicaciones
 
 La aplicación consiste en una SPA (Single Page Aplicaction) que simula la autmatización de un sistema de riego.
 
+En la pagina principal de la aplicación se muestra el listado de sensores de humedad cargados en la base de datos. 
+
+A partir del listado se accede a la pagina de control y visuaización correspondiente a sensor. Al ingresar el medidor muestra durante 5 segundos el último valor almacenado del sensor. Luego, la aplicación simula un cambio de la medición del sensor aumentando o disminuyendo el valor segun el estado cerrado o abierto de la electrovalvula asociada.
+
+Desde esta página es posible comandar la apertura y cierre de la electrovalvula. El cambio de estado de la electrovalvula es registrado en la tabla de logs de la base de datos. En cada cierre de la valvula el valor del indicador es almacenado en la tabla de mediciones de la base de datos.
+
+Ambos registros, logs y mediciones, pueden observarse desde la misma página.
+
 <p float="left">
   <img src="/frontend/doc/img1.png" width="200" />
   <img src="/frontend/doc/img2.png" width="200" /> 
@@ -15,17 +23,13 @@ La aplicación consiste en una SPA (Single Page Aplicaction) que simula la autma
   <img src="/frontend/doc/img4.png" width="200" />
 </p>
 
-![Aplicacion Smart HOME](/doc/appFiltro.jpg?raw=true "Smart HOME")
-
 ## Herramientas utilizadas
 
 El proyecto se encuentra desarrollado con las siguientes herramientas:
 
 1. Frontend: [Ionic](https://ionicframework.com/)
 2. Backend: [Node.js](https://nodejs.org/en/) + [Express.js](https://expressjs.com/)
-3. Persistencia de datos: [MySQL](https://www.mysql.com/)
-
-Los servicios requeridos Node.js y MySQL para la ejecución, asi como el compilador TypeScript en caso de requerir modificar el código del Front-end, se corren desde contenedores Docker.
+3. Base de datos: [MySQL](https://www.mysql.com/)
 
 ## Prerequisitos
 
@@ -35,32 +39,23 @@ En el link https://docs.docker.com/engine/install/ubuntu/ se muestran los pasos 
 
 En el link https://docs.docker.com/compose/install/ se muestran los pasos para la instalación de Docker Compose.
 
-
 ## Correr la aplicación
 
 Clonar o descargar la aplicacion desde Git Hub.
 
 ```sh
-git clone https://github.com/mgonzalez738/daw_tp_final.git
+git clone https://github.com/mgonzalez738/dam_tp_final.git
 ```
 
-El directorio raiz de la aplicación ejecutar.
+Cambiar al directorio raiz de la aplicación y ejecutar docker-compose.
 ```sh
+cd dam_tp_final
 docker-compose up
 ```
 
-Chequear que la aplicación esté corriendo en http://localhost:8000.
-
-Chequear que PHPMyAdmin está funcionando en http://localhost:8085.
-
-Para ingresar a la base de datos se debe utilizar: 
-1. User: root 
-2. Pass: userpass
+Ingresar a la aplicación web en http://localhost:3000.
 
 Para detener la aplicación ejecutar.
 ```sh
 docker-compose down
 ```
-
-## Contribuir
-Para contribuir realizar un pull request con las sugerencias.
